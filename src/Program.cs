@@ -1,4 +1,4 @@
-namespace Tubes2_Ckptw
+namespace Tubes2_Ckptw.src
 {
     internal static class Program
     {
