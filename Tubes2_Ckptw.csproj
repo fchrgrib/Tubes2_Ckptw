@@ -6,24 +6,11 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
   <ItemGroup>
-    <Content Include="bin\Debug\net6.0-windows\Tubes2_Ckptw.deps.json" />
-    <Content Include="bin\Debug\net6.0-windows\Tubes2_Ckptw.runtimeconfig.json" />
-    <Content Include="bin\Release\net6.0-windows\publish\Tubes2_Ckptw.deps.json" />
-    <Content Include="bin\Release\net6.0-windows\publish\Tubes2_Ckptw.runtimeconfig.json" />
-    <Content Include="bin\Release\net6.0-windows\Tubes2_Ckptw.deps.json" />
-    <Content Include="bin\Release\net6.0-windows\Tubes2_Ckptw.runtimeconfig.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\net6.0-windows\Tubes2_Ckptw.dll" />
-    <None Include="bin\Debug\net6.0-windows\Tubes2_Ckptw.exe" />
-    <None Include="bin\Debug\net6.0-windows\Tubes2_Ckptw.pdb" />
-    <None Include="bin\Release\net6.0-windows\publish\Tubes2_Ckptw.dll" />
-    <None Include="bin\Release\net6.0-windows\publish\Tubes2_Ckptw.exe" />
-    <None Include="bin\Release\net6.0-windows\publish\Tubes2_Ckptw.pdb" />
-    <None Include="bin\Release\net6.0-windows\Tubes2_Ckptw.dll" />
-    <None Include="bin\Release\net6.0-windows\Tubes2_Ckptw.exe" />
-    <None Include="bin\Release\net6.0-windows\Tubes2_Ckptw.pdb" />
+    <Folder Include="src\UI\Models\" />
+    <AvaloniaResource Include="src\UI\Assets\**" />
+    <None Remove=".gitignore" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,11 +22,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="bin\Debug\net6.0-windows\src\" />
-    <Folder Include="bin\Debug\net6.0\" />
   </ItemGroup>
 </Project>

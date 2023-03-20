@@ -1,7 +1,8 @@
 ﻿using Avalonia;
+using Avalonia.ReactiveUI;
 using System;
 
-namespace Tubes2_Ckptw.src
+namespace Tubes2_Ckptw
 {
     internal class Program
     {
@@ -16,6 +17,7 @@ namespace Tubes2_Ckptw.src
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToTrace();
+                .LogToTrace()
+                .UseReactiveUI();
     }
 }
