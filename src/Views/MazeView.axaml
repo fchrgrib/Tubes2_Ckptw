@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Tubes2_Ckptw.Views.MazeView">
-	<ListBox Items="{Binding    MazePaths}">
+	<ListBox Items="{Binding MazePaths}">
 		
 	</ListBox>
 	

@@ -7,23 +7,30 @@ using Tubes2_Ckptw.ViewModels;
 using Tubes2_Ckptw.Models;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
+using Tubes2_Ckptw.Utility;
+using System.Diagnostics;
 
 namespace Tubes2_Ckptw.ViewModels
 {
     public class MazeViewModel : ViewModelBase
     {
         private Maze maze;
-        public MazeViewModel(Maze _maze) {
-            this.maze = _maze;
+        public MazeViewModel() {
+            FileReader fileReader = new FileReader("map1.txt");
+            this.maze = new Maze(fileReader.getMapMaze());
 
+            this.maze.Print();
+          
             updateMazePath();
         }
 
         private void updateMazePath()
         {
+            this.MazePaths.Clear();
             foreach (var mp in maze.MazePaths)
             {
                 this.MazePaths.Add(mp);
+                //Debug.Print("updating " + MazePaths.Count); //works as intended
             }
         }
 
@@ -31,6 +38,5 @@ namespace Tubes2_Ckptw.ViewModels
         {
             get;
         } = new ObservableCollection<MazePath>();
-
     }
 }

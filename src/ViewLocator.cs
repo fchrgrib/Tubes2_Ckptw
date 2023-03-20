@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using System;
+using System.Diagnostics;
 using Tubes2_Ckptw.ViewModels;
 
 namespace Tubes2_Ckptw
