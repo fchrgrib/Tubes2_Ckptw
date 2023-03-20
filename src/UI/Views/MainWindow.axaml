@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Tubes2_Ckptw.Views.MainWindow"
+		xmlns:local="using:Avalonia.Tubes2_Ckptw.Views"
         Icon="/src/UI/Assets/avalonia-logo.ico"
         Title="Tubes2_Ckptw">
 	<!--TransparencyLevelHint="AcrylicBlur"-->
@@ -17,5 +18,5 @@
     </Design.DataContext>
 
     <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	
+	<!--<local:MazeView />-->	
 </Window>
