@@ -18,6 +18,7 @@
     <Folder Include="bin\Debug\net6.0-windows\" />
     <Folder Include="bin\Release\net6.0-windows\" />
     <Folder Include="src\DFS\" />
+    <Folder Include="src\Maze\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tubes2_Ckptw.src.FileReader
+namespace Tubes2_Ckptw.src
 {
     internal class FileReader
     {
