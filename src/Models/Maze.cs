@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DynamicData;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -51,6 +52,23 @@ namespace Tubes2_Ckptw.Models
                     Debug.Write(path[i, j] + " ");
                 }
                 Debug.WriteLine("");
+            }
+        }
+
+        public MazePath[] MazePaths
+        {
+            get
+            {
+                List<MazePath> temp = new List<MazePath>();
+                for(int i = 0; i < path.GetLength(0); i++)
+                {
+                    for(int j=0; j < path.GetLength(1); j++)
+                    {
+                        temp.Add(path[i, j]);
+                    }
+                }
+
+                return temp.ToArray();
             }
         }
     }

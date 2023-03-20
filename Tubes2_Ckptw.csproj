@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AvaloniaResource Include="src\UI\Assets\**" />
+    <AvaloniaResource Include="src\Assets\**" />
     <None Remove=".gitignore" />
   </ItemGroup>
 

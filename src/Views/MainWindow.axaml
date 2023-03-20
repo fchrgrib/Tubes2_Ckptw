@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Tubes2_Ckptw.Views.MainWindow"
-		xmlns:local="using:Avalonia.Tubes2_Ckptw.Views"
-        Icon="/src/UI/Assets/avalonia-logo.ico"
+		xmlns:local="using:Tubes2_Ckptw.Views"
+        Icon="/src/Assets/avalonia-logo.ico"
         Title="Tubes2_Ckptw">
 	<!--TransparencyLevelHint="AcrylicBlur"-->
 	<!--Background="Transparent"-->
@@ -17,6 +17,12 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	<!--<local:MazeView />-->	
+	<Grid ColumnDefinitions="3*, 100" RowDefinitions="2*, 100">
+		<local:MazeView Grid.Row="0" Grid.Column="0"/>
+		<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+		<local:MazeView Grid.Row="0" Grid.Column="1"/>
+		<local:MazeView Grid.Row="1" Grid.Column="0"/>
+		<local:MazeView Grid.Row="1" Grid.Column="1"/>
+	</Grid>
+   
 </Window>
