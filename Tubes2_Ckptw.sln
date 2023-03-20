@@ -3,12 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tubes2_Ckptw", "Tubes2_Ckptw.csproj", "{ED842FD4-7EEA-48B1-A661-4C36AB91BCA0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{967E40D8-FA20-477B-AD42-287CE173A067}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubes2_Ckptw", "Tubes2_Ckptw.csproj", "{3791ABA8-3141-48EA-8738-6D553155898E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED842FD4-7EEA-48B1-A661-4C36AB91BCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED842FD4-7EEA-48B1-A661-4C36AB91BCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED842FD4-7EEA-48B1-A661-4C36AB91BCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED842FD4-7EEA-48B1-A661-4C36AB91BCA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3791ABA8-3141-48EA-8738-6D553155898E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3791ABA8-3141-48EA-8738-6D553155898E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3791ABA8-3141-48EA-8738-6D553155898E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3791ABA8-3141-48EA-8738-6D553155898E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7A61F197-10E0-4D6B-86D6-979030A5C201}
+		SolutionGuid = {492F2386-7663-4A42-B988-3A206CBDEB04}
 	EndGlobalSection
 EndGlobal

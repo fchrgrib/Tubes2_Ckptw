@@ -1,6 +1,7 @@
-﻿using System.Diagnostics;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace Tubes2_Ckptw.src
     internal class FileReader
     {
         private string nameFile;
-        public FileReader(string nameFile) {
+        public FileReader(string nameFile)
+        {
             this.nameFile = nameFile;
         }
         public char[,] getMapMaze()
