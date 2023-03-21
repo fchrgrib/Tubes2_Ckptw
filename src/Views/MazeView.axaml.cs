@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Avalonia.Layout;
 
 using Tubes2_Ckptw.Models;
+using Avalonia.Media;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -55,6 +56,8 @@ namespace Tubes2_Ckptw.Views
                     // content definition
                     Button tb = new Button();
                     tb.Content = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].ToString();
+                    tb.Foreground = Brushes.White;
+
                     tb.Width = mazeGrid.Width / UsedMaze.Width;
                     tb.Height = mazeGrid.Height / UsedMaze.Height;
                     //Debug.WriteLine(i * this.UsedMaze.Width + j + tb.Text);
