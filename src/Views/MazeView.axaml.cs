@@ -59,6 +59,9 @@ namespace Tubes2_Ckptw.Views
                     tb.Height = mazeGrid.Height / UsedMaze.Height;
                     //Debug.WriteLine(i * this.UsedMaze.Width + j + tb.Text);
 
+                    tb.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    tb.VerticalContentAlignment = VerticalAlignment.Center;
+
                     tb.HorizontalAlignment = HorizontalAlignment.Center;
                     tb.VerticalAlignment = VerticalAlignment.Center;
 
