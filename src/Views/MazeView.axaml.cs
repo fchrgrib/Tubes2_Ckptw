@@ -5,6 +5,7 @@ using Avalonia.Layout;
 
 using Tubes2_Ckptw.Models;
 using Avalonia.Media;
+using System;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -15,7 +16,14 @@ namespace Tubes2_Ckptw.Views
         public Maze UsedMaze
         {
             get { return GetValue(UsedMazeProperty); }
-            set { SetValue(UsedMazeProperty, value); }
+            set
+            {
+                if (value != GetValue(UsedMazeProperty))
+                {
+                    SetValue(UsedMazeProperty, value);
+                    UpdateMazeGrid();
+                }
+            }
         }
 
         public MazeView()
@@ -25,6 +33,13 @@ namespace Tubes2_Ckptw.Views
 
         protected override void OnDataContextEndUpdate()
         {
+            UpdateMazeGrid();
+            base.OnDataContextEndUpdate();
+        }
+
+        public void UpdateMazeGrid()
+        {
+            Debug.Print("Updating!");
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
             mazeGrid.Children.Clear();
 
@@ -50,9 +65,9 @@ namespace Tubes2_Ckptw.Views
                 mazeGrid.ColumnDefinitions.Add(col);
             }
 
-            for(int i = 0; i < this.UsedMaze.Height; i++)
+            for (int i = 0; i < this.UsedMaze.Height; i++)
             {
-                for(int j=0; j <this.UsedMaze.Width; j++)
+                for (int j = 0; j < this.UsedMaze.Width; j++)
                 {
                     // content definition
                     Button tb = new Button();
@@ -76,8 +91,12 @@ namespace Tubes2_Ckptw.Views
                     mazeGrid.Children.Add(tb);
                 }
             }
-
-            base.OnDataContextEndUpdate();
         }
+
+        //protected override void OnDataContextEndUpdate()
+        //{
+            
+        //    base.OnDataContextEndUpdate();
+        //}
     }
 }

@@ -11,6 +11,7 @@ using Tubes2_Ckptw.Utility;
 using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
+using Tubes2_Ckptw.Views;
 using ReactiveUI;
 
 namespace Tubes2_Ckptw.ViewModels
@@ -21,18 +22,22 @@ namespace Tubes2_Ckptw.ViewModels
         public MazeViewModel() {
             fileReader = new FileReader("map1.txt");
             
+            
             updateMazePath();
         }
 
         private void updateMazePath()
         {
-            this.mazeable = new Maze(fileReader.getMapMaze());
-
-            this.mazePaths = new ObservableCollection<MazePath>();
-            foreach (var mp in this.mazeable.MazePaths)
+            this.Mazeable = new Maze(fileReader.getMapMaze());
+            this.Mazeable.Print();
+            this.MazePaths = new ObservableCollection<MazePath>();
+            foreach (var mp in this.Mazeable.MazePaths)
             {
-                this.mazePaths.Add(mp);
+                this.MazePaths.Add(mp);
             }
+
+            this.Filename = fileReader.getNameFile;
+
         }
 
         private ObservableCollection<MazePath>? mazePaths;
@@ -40,6 +45,13 @@ namespace Tubes2_Ckptw.ViewModels
         {
             get => mazePaths;
             set => this.RaiseAndSetIfChanged(ref mazePaths, value);
+        }
+
+        private string filename;
+        public string Filename
+        {
+            get => filename;
+            set => this.RaiseAndSetIfChanged(ref filename, value);
         }
 
         private Maze? mazeable;

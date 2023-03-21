@@ -12,6 +12,7 @@ namespace Tubes2_Ckptw.Utility
     internal class FileReader
     {
         private string nameFile;
+        public string getNameFile => nameFile;
         public FileReader()
         {
             nameFile = "";
@@ -66,6 +67,10 @@ namespace Tubes2_Ckptw.Utility
             //{
             //    //result = await fileDialog.ShowAsync(window);
             //}
+            if(result == null)
+            {
+                return string.Empty;
+            }
 
             return string.Join(" ", result);
         }
