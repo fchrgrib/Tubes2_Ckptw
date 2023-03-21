@@ -33,7 +33,8 @@
 				<TextBlock>DFS</TextBlock>
 			</StackPanel>
 			
-			<local:MazeView Grid.Row="1" Grid.Column="0" UsedMaze="{Binding Mazeable}"/>	
+			<local:MazeView Grid.Row="1" Grid.Column="0" UsedMaze="{Binding Mazeable}"/>
+			<Button Grid.Row="2" Grid.Column="0" Command="{Binding OnClickCommand}">Read File</Button>
 			
 		</Grid>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,6 +12,10 @@ namespace Tubes2_Ckptw.Utility
     internal class FileReader
     {
         private string nameFile;
+        public FileReader()
+        {
+            nameFile = "";
+        }
         public FileReader(string nameFile)
         {
             this.nameFile = nameFile;
@@ -43,6 +48,34 @@ namespace Tubes2_Ckptw.Utility
 
 
             return result;
+        }
+
+        private async Task<string> _getPath(Window window)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.AllowMultiple = false;
+            fileDialog.Title = "Buka Maze";
+            fileDialog.Directory = Path.GetFullPath("../../../test");
+            fileDialog.Filters.Add(new FileDialogFilter() { Extensions = { "txt" } });
+
+            string[]? result = await fileDialog.ShowAsync(window);
+
+            //while(result == null)
+            //{
+            //    //result = await fileDialog.ShowAsync(window);
+            //}
+
+            return string.Join(" ", result);
+        }
+
+        public async void BrowseFiles(Window window)
+        {
+            Task<string> result = _getPath(window);
+
+            Debug.WriteLine(await result);
+            Debug.Print("kpangi");
+
+            this.nameFile = result.Result;
         }
     }
 }

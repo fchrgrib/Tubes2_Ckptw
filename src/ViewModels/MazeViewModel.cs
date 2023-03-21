@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using Tubes2_Ckptw.Utility;
 using System.Diagnostics;
+using Avalonia.Controls;
 
 namespace Tubes2_Ckptw.ViewModels
 {
@@ -39,5 +40,12 @@ namespace Tubes2_Ckptw.ViewModels
         } = new ObservableCollection<MazePath>();
 
         public Maze Mazeable { get; } = new Maze();
+
+        public void OnClickCommand()
+        {
+            Debug.Print("called!");
+            FileReader fileReader = new FileReader();
+            fileReader.BrowseFiles(new Window());
+        }
     }
 }
