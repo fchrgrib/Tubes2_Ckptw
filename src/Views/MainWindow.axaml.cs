@@ -1,4 +1,7 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
+using System;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -7,6 +10,10 @@ namespace Tubes2_Ckptw.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            //ListBox lb = this.FindControl<ListBox>("ListBBB");
+
+
         }
     }
 }

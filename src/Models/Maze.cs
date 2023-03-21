@@ -11,16 +11,22 @@ namespace Tubes2_Ckptw.Models
 {
     public class Maze
     {
-        private int Width
+        public int Width
         {
-            get; set;
+            get;
         }
-        private int Height
+        public int Height
         {
-            get; set;
+            get;
         }
         private MazePath[,] path;
 
+        public Maze()
+        {
+            Width = 0;
+            Height = 0;
+            path = new MazePath[Width, Height]; 
+        }
         public Maze(char[,] _maze)
         {
             Width = _maze.GetLength(0);

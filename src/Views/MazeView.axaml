@@ -1,11 +1,36 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Tubes2_Ckptw.Views.MazeView">
-	<ListBox Items="{Binding MazePaths}">
-		
-	</ListBox>
-	
-</UserControl>
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mz="using:Tubes2_Ckptw.Utility"
+        xmlns:controls="using:Tubes2_Ckptw.Views">
+	<Design.PreviewWith>
+		<controls:MazeView />
+	</Design.PreviewWith>
+
+	<Style Selector="controls|MazeView">
+		<!-- Set Defaults -->
+		<Setter Property="Background" Value="Black"></Setter>
+		<Setter Property="Template">
+			<ControlTemplate>
+				<ListBox Items="{Binding MazePaths}" Grid.Row="0" Grid.Column="0" Name="ListBox">
+					<ListBox.Styles>
+						<Style Selector="ListBox">
+							<Setter Property="Width" Value="900"></Setter>
+							<Setter Property="Height" Value="900"></Setter>
+						</Style>
+						<Style Selector="ListBoxItem">
+							<Setter Property="Width" Value="225"></Setter>
+							<Setter Property="Height" Value="225"></Setter>
+							<Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+							<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+						</Style>
+					</ListBox.Styles>
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<mz:MazePanel Wedth="4"/>
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+				</ListBox>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

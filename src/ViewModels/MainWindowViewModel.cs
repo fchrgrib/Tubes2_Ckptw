@@ -8,5 +8,6 @@ namespace Tubes2_Ckptw.ViewModels
         //public string test => "Welcome to Avalonia!";
 
         //public string test = "extremely sad";
+        
     }
 }

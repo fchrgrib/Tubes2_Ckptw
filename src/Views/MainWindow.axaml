@@ -3,13 +3,18 @@
         xmlns:vm="using:Tubes2_Ckptw.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="{Binding WindowWidth}" d:DesignHeight="{Binding	WindowHeight}"
+		
+		WindowState="Maximized"
         x:Class="Tubes2_Ckptw.Views.MainWindow"
 		xmlns:local="using:Tubes2_Ckptw.Views"
+		xmlns:mz="using:Tubes2_Ckptw.Utility"
+		
         Icon="/src/Assets/avalonia-logo.ico"
         Title="Tubes2_Ckptw">
-	<!--TransparencyLevelHint="AcrylicBlur"-->
-	<!--Background="Transparent"-->
+	<!--TransparencyLevelHint="AcrylicBlur"
+	Background="Transparent"-->
+	
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -17,10 +22,11 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<Grid ColumnDefinitions="3*, 100" RowDefinitions="2*, 100">
+	<Grid ColumnDefinitions="auto, auto" RowDefinitions="auto, auto">
 		<local:MazeView Grid.Row="0" Grid.Column="0"/>
-		<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-		<!--<local:MazeView Grid.Row="0" Grid.Column="1"/>-->
+		<!--<mz:MazePanel MappedMaze="{Binding  Mazeable}"></mz:MazePanel>-->
+		<TextBlock Text="right" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+		
 		<!--<local:MazeView Grid.Row="1" Grid.Column="0"/>
 		<local:MazeView Grid.Row="1" Grid.Column="1"/>-->
 	</Grid>
