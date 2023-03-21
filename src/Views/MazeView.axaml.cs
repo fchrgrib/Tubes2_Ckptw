@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using System.Diagnostics;
+using Avalonia.Layout;
+
 using Tubes2_Ckptw.Models;
 
 namespace Tubes2_Ckptw.Views
@@ -15,8 +17,6 @@ namespace Tubes2_Ckptw.Views
             set { SetValue(UsedMazeProperty, value); }
         }
 
-        private ListBox listBox;
-
         public MazeView()
         {
             InitializeComponent();
@@ -24,31 +24,51 @@ namespace Tubes2_Ckptw.Views
 
         protected override void OnDataContextEndUpdate()
         {
-            listBox = this.FindControl<ListBox>("ListBox");
+            Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
 
-            //int desiredViewportSize;
-            //if (!double.IsNaN(this.Width))
-            //{
-            //     desiredViewportSize = this.Width < this.Height ? (int)this.Width : (int)this.Height;
-            //} else
-            //{
-            //    desiredViewportSize = window
-            //}
-            
+            mazeGrid.Width = mazeGrid.Height = 900;
+            //mazeGrid.ShowGridLines = true;
 
-            Debug.WriteLine("wr" + Window.wi);
+            mazeGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            mazeGrid.VerticalAlignment = VerticalAlignment.Center;
 
-            int maxAxisVal = this.UsedMaze.Width > this.UsedMaze.Height ? this.UsedMaze.Width : this.UsedMaze.Height;
+            for (int i = 0; i < this.UsedMaze.Height; i++)
+            {
+                RowDefinition row = new RowDefinition();
+                row.Height = new GridLength(1, GridUnitType.Star);
 
-            //foreach(var item in listBox.Styles)
-            //{
-            //    foreach(var style in item.Children)
-            //    {
-            //        Debug.WriteLine(style.ToString());
-            //    }
-            //}
-            Debug.Write(desiredViewportSize + "this");
-            listBox.Width = listBox.Height = desiredViewportSize;
+                mazeGrid.RowDefinitions.Add(row);
+            }
+
+            for (int j = 0; j < this.UsedMaze.Width; j++)
+            {
+                ColumnDefinition col = new ColumnDefinition();
+                col.Width = new GridLength(1, GridUnitType.Star);
+
+                mazeGrid.ColumnDefinitions.Add(col);
+            }
+
+            for(int i = 0; i < this.UsedMaze.Height; i++)
+            {
+                for(int j=0; j <this.UsedMaze.Width; j++)
+                {
+                    // content definition
+                    Button tb = new Button();
+                    tb.Content = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].ToString();
+                    tb.Width = mazeGrid.Width / UsedMaze.Width;
+                    tb.Height = mazeGrid.Height / UsedMaze.Height;
+                    //Debug.WriteLine(i * this.UsedMaze.Width + j + tb.Text);
+
+                    tb.HorizontalAlignment = HorizontalAlignment.Center;
+                    tb.VerticalAlignment = VerticalAlignment.Center;
+
+                    // not sure why this one is flipped
+                    Grid.SetRow(tb, i);
+                    Grid.SetColumn(tb, j);
+
+                    mazeGrid.Children.Add(tb);
+                }
+            }
 
             base.OnDataContextEndUpdate();
         }
