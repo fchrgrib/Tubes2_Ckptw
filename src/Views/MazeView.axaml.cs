@@ -26,6 +26,7 @@ namespace Tubes2_Ckptw.Views
         protected override void OnDataContextEndUpdate()
         {
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
+            mazeGrid.Children.Clear();
 
             mazeGrid.Width = mazeGrid.Height = 900;
             //mazeGrid.ShowGridLines = true;

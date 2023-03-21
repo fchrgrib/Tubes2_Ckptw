@@ -20,14 +20,16 @@ namespace Tubes2_Ckptw.Utility
         {
             this.nameFile = nameFile;
         }
+
         public char[,] getMapMaze()
         {
-
+            Debug.Write(nameFile + "<");
             string mapBefSplit = "";
 
             try
             {
-                mapBefSplit = File.ReadAllText("../../../test/" + this.nameFile);
+                // TODO: make this empty
+                mapBefSplit = File.ReadAllText( "../../../test/" + this.nameFile);
             }
             catch (FileNotFoundException e)
             {
@@ -50,7 +52,7 @@ namespace Tubes2_Ckptw.Utility
             return result;
         }
 
-        private async Task<string> _getPath(Window window)
+        private async Task<string> _getPath()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.AllowMultiple = false;
@@ -58,7 +60,7 @@ namespace Tubes2_Ckptw.Utility
             fileDialog.Directory = Path.GetFullPath("../../../test");
             fileDialog.Filters.Add(new FileDialogFilter() { Extensions = { "txt" } });
 
-            string[]? result = await fileDialog.ShowAsync(window);
+            string[]? result = await fileDialog.ShowAsync(new Window());
 
             //while(result == null)
             //{
@@ -68,14 +70,11 @@ namespace Tubes2_Ckptw.Utility
             return string.Join(" ", result);
         }
 
-        public async void BrowseFiles(Window window)
+        public async void BrowseFiles()
         {
-            Task<string> result = _getPath(window);
+            Task<string> result = _getPath();
+            this.nameFile = Path.GetFileName(await result);
 
-            Debug.WriteLine(await result);
-            Debug.Print("kpangi");
-
-            this.nameFile = result.Result;
         }
     }
 }

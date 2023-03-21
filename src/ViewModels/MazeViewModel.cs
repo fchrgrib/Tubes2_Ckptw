@@ -10,42 +10,49 @@ using System.Reactive.Linq;
 using Tubes2_Ckptw.Utility;
 using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Controls.Chrome;
+using ReactiveUI;
 
 namespace Tubes2_Ckptw.ViewModels
 {
-    public class MazeViewModel : ViewModelBase
+    public class MazeViewModel : ReactiveObject
     {
+        private FileReader fileReader;
         public MazeViewModel() {
-            FileReader fileReader = new FileReader("map1.txt");
-            this.Mazeable = new Maze(fileReader.getMapMaze());
+            fileReader = new FileReader("map1.txt");
             
-            //this.Mazeable.Print();
-          
             updateMazePath();
         }
 
         private void updateMazePath()
         {
-            this.MazePaths.Clear();
-            foreach (var mp in Mazeable.MazePaths)
+            this.mazeable = new Maze(fileReader.getMapMaze());
+
+            this.mazePaths = new ObservableCollection<MazePath>();
+            foreach (var mp in this.mazeable.MazePaths)
             {
-                this.MazePaths.Add(mp);
-                //Debug.Print("updating " + MazePaths.Count); //works as intended
+                this.mazePaths.Add(mp);
             }
         }
 
-        public ObservableCollection<MazePath> MazePaths
+        private ObservableCollection<MazePath>? mazePaths;
+        public ObservableCollection<MazePath>? MazePaths
         {
-            get;
-        } = new ObservableCollection<MazePath>();
+            get => mazePaths;
+            set => this.RaiseAndSetIfChanged(ref mazePaths, value);
+        }
 
-        public Maze Mazeable { get; } = new Maze();
+        private Maze? mazeable;
+        public Maze? Mazeable {
+            get => mazeable;
+            set => this.RaiseAndSetIfChanged(ref mazeable, value);
+        }
 
         public void OnClickCommand()
         {
-            Debug.Print("called!");
-            FileReader fileReader = new FileReader();
-            fileReader.BrowseFiles(new Window());
+            fileReader.BrowseFiles();
+
+            updateMazePath();
         }
     }
 }
