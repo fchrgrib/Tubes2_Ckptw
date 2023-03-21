@@ -14,39 +14,11 @@ namespace Tubes2_Ckptw.ViewModels
 {
     public class MazeViewModel : ViewModelBase
     {
-        public int WindowWidth { get => 1600; }
-        public int WindowHeight { get => 900; }
-
-        public int MazeWidth { get => minBy * Mazeable.Width; }
-        public int MazeHeight { get => minBy * Mazeable.Height; }
-
-        public int MazePathWidth;
-        public int MazePathHeight;
-        
-
-        private int PathWidth { get; set; }
-        private int PathHeight { get; set; }
-
-
-        public int minBy { get; set; }
         public MazeViewModel() {
             FileReader fileReader = new FileReader("map1.txt");
             this.Mazeable = new Maze(fileReader.getMapMaze());
-
-            this.PathWidth = this.WindowWidth / this.Mazeable.Width;
-            this.PathHeight = this.WindowHeight / this.Mazeable.Height;
-
-            this.minBy = this.PathHeight < this.PathWidth ? this.PathHeight : this.PathWidth;
-
-            MazePathWidth = MazePathHeight = minBy;
-
-            //MazeWidth = minBy * Mazeable.Width;
-            //MazeHeight = minBy * Mazeable.Height;
-
-            //Debug.WriteLine(this.PathHeight + "<<<" + this.PathWidth);
-            Debug.WriteLine(MazePathHeight + "-" + MazePathWidth + "-" + MazeHeight +"-"+ MazeWidth);
-
-            this.Mazeable.Print();
+            
+            //this.Mazeable.Print();
           
             updateMazePath();
         }

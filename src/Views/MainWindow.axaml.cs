@@ -10,10 +10,6 @@ namespace Tubes2_Ckptw.Views
         public MainWindow()
         {
             InitializeComponent();
-
-            //ListBox lb = this.FindControl<ListBox>("ListBBB");
-
-
         }
     }
 }
