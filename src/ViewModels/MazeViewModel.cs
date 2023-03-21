@@ -29,7 +29,6 @@ namespace Tubes2_Ckptw.ViewModels
 
 
         public int minBy { get; set; }
-        public Maze Mazeable { get; set; }
         public MazeViewModel() {
             FileReader fileReader = new FileReader("map1.txt");
             this.Mazeable = new Maze(fileReader.getMapMaze());
@@ -66,5 +65,7 @@ namespace Tubes2_Ckptw.ViewModels
         {
             get;
         } = new ObservableCollection<MazePath>();
+
+        public Maze Mazeable { get; } = new Maze();
     }
 }

@@ -23,7 +23,7 @@
     </Design.DataContext>
 
 	<Grid ColumnDefinitions="auto, auto" RowDefinitions="auto, auto">
-		<local:MazeView Grid.Row="0" Grid.Column="0"/>
+		<local:MazeView Grid.Row="0" Grid.Column="0" UsedMaze="{Binding Mazeable}"/>
 		<!--<mz:MazePanel MappedMaze="{Binding  Mazeable}"></mz:MazePanel>-->
 		<TextBlock Text="right" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
 		
