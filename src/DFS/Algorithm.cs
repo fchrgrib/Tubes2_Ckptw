@@ -151,7 +151,8 @@ namespace Tubes2_Ckptw.src.DFS
 
                 if (check == 0)
                 {
-                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
+                    int lebi = Math.Abs(currentDir.Item1 - prevDir.Item1 + currentDir.Item2 - prevDir.Item2) - 1;
+                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-(lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
                    
 
@@ -163,7 +164,6 @@ namespace Tubes2_Ckptw.src.DFS
                     
                     prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
                 }
-
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
