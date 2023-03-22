@@ -4,29 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tubes2_Ckptw.src.FileReader;
-using static Tubes2_Ckptw.src.FileReader.FileReader;
+using Tubes2_Ckptw.Utility;
 
-namespace Tubes2_Ckptw.src.DFS
+namespace Tubes2_Ckptw.Algorithm
 {
     internal class DFS
     {
 
 
-        static void Main()
-        {
-            FileReader.FileReader fr = new FileReader.FileReader("text.txt");
-
-
-            DFS dfs = new DFS(fr.getMapMaze());
-            List<char> movement = dfs.getMovement();
-            Debug.WriteLine(movement.Count);
-            for (int i = 0; i < movement.Count; i++)
-            {
-
-                Debug.WriteLine(movement[i]);
-            }
-        }
+      
         private char[,] mapMaze;
         private int row;
         private int col;
