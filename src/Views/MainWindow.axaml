@@ -41,6 +41,7 @@
 				<Setter Property="Background" Value="#DAEDF5"></Setter>
 				<!--<Setter Property="Orientation" Value="Horizontal"></Setter>-->
 				<Setter Property="Width" Value="1150"></Setter>
+				<Setter Property="Height" Value="630"></Setter>
 				<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 				<Setter Property="VerticalAlignment" Value="Center"></Setter>
 			</Style>

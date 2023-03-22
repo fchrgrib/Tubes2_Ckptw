@@ -66,9 +66,21 @@ namespace Tubes2_Ckptw.Views
             mazeGrid.RowDefinitions.Clear();
             mazeGrid.ColumnDefinitions.Clear();
             
-            double maxVertical = 630;
-            mazeGrid.Width = mazeGrid.Height = maxVertical;
+            double  maxVertical = 630,
+                    maxHorizontal = 1150;
+
+            double  desiredGridHeight = maxVertical / this.MazeProp.Maze.Height,
+                    desiredGridWidth = maxHorizontal / this.MazeProp.Maze.Width;
+
+            double desiredGridSize = desiredGridHeight < desiredGridWidth ? 
+                desiredGridHeight 
+                : 
+                desiredGridWidth;
+
+            mazeGrid.Width = desiredGridSize * this.MazeProp.Maze.Width;
+            mazeGrid.Height = desiredGridSize * this.MazeProp.Maze.Height;
             //mazeGrid.ShowGridLines = true;
+
 
             mazeGrid.HorizontalAlignment = HorizontalAlignment.Center;
             mazeGrid.VerticalAlignment = VerticalAlignment.Center;
@@ -76,7 +88,7 @@ namespace Tubes2_Ckptw.Views
             for (int i = 0; i < this.MazeProp.Maze.Height; i++)
             {
                 RowDefinition row = new RowDefinition();
-                row.Height = new GridLength(1, GridUnitType.Star);
+                row.Height = new GridLength(desiredGridSize, GridUnitType.Pixel);
 
                 mazeGrid.RowDefinitions.Add(row);
             }
@@ -84,7 +96,7 @@ namespace Tubes2_Ckptw.Views
             for (int j = 0; j < this.MazeProp.Maze.Width; j++)
             {
                 ColumnDefinition col = new ColumnDefinition();
-                col.Width = new GridLength(1, GridUnitType.Star);
+                col.Width = new GridLength(desiredGridSize, GridUnitType.Pixel);
 
                 mazeGrid.ColumnDefinitions.Add(col);
             }
