@@ -54,7 +54,7 @@ namespace Tubes2_Ckptw.src.DFS
             while (this.treasure != 0)
             {
                 int check = 0;
-                if (this.mapMaze[currentDir.Item1,currentDir.Item2]=='T') this.treasure--;
+                
                 try
                 {
                     
@@ -106,6 +106,7 @@ namespace Tubes2_Ckptw.src.DFS
 
                 prevDir = currentDir;
                 currentDir = this.stack.Pop();
+                if (this.mapMaze[currentDir.Item1,currentDir.Item2]=='T') this.treasure--;
             }
 
             return direction;
