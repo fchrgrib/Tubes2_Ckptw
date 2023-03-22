@@ -36,14 +36,15 @@ namespace Tubes2_Ckptw.Views
             UpdateMazeGrid();
             base.OnDataContextEndUpdate();
         }
-
+        
         public void UpdateMazeGrid()
         {
             Debug.Print("Updating!");
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
             mazeGrid.Children.Clear();
-
-            mazeGrid.Width = mazeGrid.Height = 900;
+            
+            double maxVertical = 630;
+            mazeGrid.Width = mazeGrid.Height = maxVertical;
             //mazeGrid.ShowGridLines = true;
 
             mazeGrid.HorizontalAlignment = HorizontalAlignment.Center;
