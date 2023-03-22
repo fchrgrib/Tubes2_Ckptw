@@ -83,14 +83,14 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item1 - 1+currentDir.Item2 != prevDir.Item1+prevDir.Item2)
                         )
                     {
-                        Debug.WriteLine("masuk sini 4");
+                        Debug.WriteLine("masuk sini 1");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
-                        direction.Add(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
                         check = 1;
                     }
                 }
                 catch (ArgumentOutOfRangeException e) { }
                 catch (IndexOutOfRangeException e) { }
+
 
                 try
                 {
@@ -99,9 +99,8 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item1+1+currentDir.Item2!=prevDir.Item1+prevDir.Item2)
                         )
                     {
-                        Debug.WriteLine("masuk sini 1");
+                        Debug.WriteLine("masuk sini 2");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
-                        direction.Add(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
                         check = 1;
                     }
                 }
@@ -115,9 +114,8 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item2-1+currentDir.Item1!=prevDir.Item2+prevDir.Item1)
                         )
                     {
-                        Debug.WriteLine("masuk sini 2");
+                        Debug.WriteLine("masuk sini 3");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
-                        direction.Add(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
                         check = 1;
                     }
                 }
@@ -132,9 +130,8 @@ namespace Tubes2_Ckptw.src.DFS
                         )
                     {
 
-                        Debug.WriteLine("masuk sini 3");
+                        Debug.WriteLine("masuk sini 4");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
-                        direction.Add(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
                         check = 1;
                     }
                 }
@@ -145,19 +142,22 @@ namespace Tubes2_Ckptw.src.DFS
 
                 prevDir = currentDir;
 
-                if (check == 0)
-                {
-                    
-                    while ((direction[direction.Count - 1].Item1 != currentDir.Item1) || (direction[direction.Count - 1].Item2 != currentDir.Item2))
-                    {
-                        Debug.WriteLine("sini");
-                        direction.RemoveAt(direction.Count - 1);
-                    }
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
-                }
 
                 currentDir = this.stack.Pop();
+                direction.Add(currentDir);
                 if (this.mapMaze[currentDir.Item1, currentDir.Item2] == 'T') this.treasure--;
+
+                if (check == 0)
+                {
+                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
+
+                    for (int i=0;i<((jumlah)-(currentDir.Item1 + currentDir.Item2-1));i++) {
+                        Debug.WriteLine("masuk");
+                        direction.RemoveAt(direction.Count - 1);
+                    }
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 2].Item1, direction[direction.Count - 2].Item2);
+                }
+                
                 
             }
 
