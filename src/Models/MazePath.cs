@@ -73,13 +73,13 @@ namespace Tubes2_Ckptw.Models
             switch (PathSymbol)
             {
                 case pathSymbol.KrustyKrab:
-                    return "K";
+                    return "Start";
                 case pathSymbol.Treasure:
-                    return "T";
+                    return "Treasure";
                 case pathSymbol.Pathable:
-                    return "R";
+                    return "";
                 case pathSymbol.Unpathable:
-                    return "X";
+                    return "";
                 default:
                     return "Undefined";
             }

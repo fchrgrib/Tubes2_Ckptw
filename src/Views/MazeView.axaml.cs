@@ -73,7 +73,9 @@ namespace Tubes2_Ckptw.Views
                     // content definition
                     Button tb = new Button();
                     tb.Content = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].ToString();
-                    tb.Foreground = Brushes.White;
+
+                    tb.Background = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
+                    tb.Foreground = Brushes.Black;
 
                     tb.Width = mazeGrid.Width / UsedMaze.Width;
                     tb.Height = mazeGrid.Height / UsedMaze.Height;
