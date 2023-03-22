@@ -82,7 +82,8 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1-1,currentDir.Item2)))
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1-1,currentDir.Item2))&&
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
@@ -97,7 +98,8 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') &&(
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1+1,currentDir.Item2)))
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1+1,currentDir.Item2)) &&
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
@@ -111,7 +113,8 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') &&(
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1,currentDir.Item2-1)))
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1,currentDir.Item2-1)) &&
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -125,7 +128,8 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') &&(
-                        isLiveNode(new Tuple<int,int>(currentDir.Item1,currentDir.Item2+1)))
+                        isLiveNode(new Tuple<int,int>(currentDir.Item1,currentDir.Item2+1)) &&
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
 
@@ -148,14 +152,18 @@ namespace Tubes2_Ckptw.src.DFS
                 if (check == 0)
                 {
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
+                    int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
+                   
 
-                        for (int i = 0; i < Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1)); i++)
+
+                        for (int i = 0; i < Math.Abs(calculate); i++)
                         {
                             direction.RemoveAt(direction.Count - 1);
                         }
                     
                     prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
                 }
+
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
