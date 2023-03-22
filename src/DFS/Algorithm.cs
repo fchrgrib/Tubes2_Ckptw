@@ -144,7 +144,7 @@ namespace Tubes2_Ckptw.src.DFS
 
 
                 currentDir = this.stack.Pop();
-                direction.Add(currentDir);
+                
                 if (this.mapMaze[currentDir.Item1, currentDir.Item2] == 'T') this.treasure--;
 
                 if (check == 0)
@@ -155,10 +155,11 @@ namespace Tubes2_Ckptw.src.DFS
                         Debug.WriteLine("masuk");
                         direction.RemoveAt(direction.Count - 1);
                     }
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 2].Item1, direction[direction.Count - 2].Item2);
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
                 }
-                
-                
+                direction.Add(currentDir);
+
+
             }
 
             return direction;
