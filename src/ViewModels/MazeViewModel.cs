@@ -38,7 +38,7 @@ namespace Tubes2_Ckptw.ViewModels
         private void updateMazePath()
         {
             this.Mazeable = new Maze(fileReader.getMapMaze());
-            this.Mazeable.Print();
+            //this.Mazeable.Print();
 
             this.MazeableProp.Maze = this.Mazeable;
 
@@ -53,7 +53,7 @@ namespace Tubes2_Ckptw.ViewModels
             if(mazeView != null)
                 mazeView.InitializeMazeGrid();
 
-            Debug.WriteLine(this.Mazeable.Width + " x " + this.Mazeable.Height);
+            //Debug.WriteLine(this.Mazeable.Width + " x " + this.Mazeable.Height);
         }
 
         private ObservableCollection<MazePath>? mazePaths;

@@ -58,7 +58,7 @@ namespace Tubes2_Ckptw.Views
         
         public void InitializeMazeGrid()
         {
-            Debug.WriteLine("initing");
+            //Debug.WriteLine("initing");
 
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
 
@@ -105,7 +105,7 @@ namespace Tubes2_Ckptw.Views
             {
                 for (int j = 0; j < this.MazeProp.Maze.Width; j++)
                 {
-                    int idx = i * MazeProp.Maze.Width + j; Debug.Write(idx + " -> ");
+                    int idx = i * MazeProp.Maze.Width + j; //Debug.Write(idx + " -> ");
                     //var contentBinding = new Binding("MazeableProp.Maze.BoundContent[" + idx + "]");
                     //var brushBinding = new Binding("MazeableProp.Maze.BoundBrush[" + idx + "]");
 
@@ -170,8 +170,8 @@ namespace Tubes2_Ckptw.Views
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
 
-            Debug.WriteLine("ganti si!");
-            this.maze.Print();
+            //Debug.WriteLine("ganti si!");
+            //this.maze.Print();
         }
     }
 }
