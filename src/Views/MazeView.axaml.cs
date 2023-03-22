@@ -45,19 +45,26 @@ namespace Tubes2_Ckptw.Views
 
         public MazeView()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         protected override void OnDataContextEndUpdate()
         {
             InitializeMazeGrid();
             base.OnDataContextEndUpdate();
+
+            (DataContext as MazeViewModel).mazeView = this as MazeView;
         }
         
         public void InitializeMazeGrid()
         {
+            Debug.WriteLine("initing");
+
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
+
             mazeGrid.Children.Clear();
+            mazeGrid.RowDefinitions.Clear();
+            mazeGrid.ColumnDefinitions.Clear();
             
             double maxVertical = 630;
             mazeGrid.Width = mazeGrid.Height = maxVertical;
@@ -87,23 +94,24 @@ namespace Tubes2_Ckptw.Views
                 for (int j = 0; j < this.MazeProp.Maze.Width; j++)
                 {
                     int idx = i * MazeProp.Maze.Width + j; Debug.Write(idx + " -> ");
-                    var contentBinding = new Binding("MazeableProp.Maze.BoundContent[" + idx + "]");
-                    var brushBinding = new Binding("MazeableProp.Maze.BoundBrush[" + idx + "]");
+                    //var contentBinding = new Binding("MazeableProp.Maze.BoundContent[" + idx + "]");
+                    //var brushBinding = new Binding("MazeableProp.Maze.BoundBrush[" + idx + "]");
 
                     // content definition
                     Button tb = new Button()
                     {
 
 
-                        [!Button.ContentProperty] = contentBinding,
-                        [!Button.BackgroundProperty] = brushBinding
+                        //[!Button.ContentProperty] = contentBinding,
+                        //[!Button.BackgroundProperty] = brushBinding
                     };
-                    //tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j];
-                    
-                    
+
+                    tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j];
+
+
                     //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
 
-                    //tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
                     tb.Foreground = Brushes.Black;
 
                     tb.Width = mazeGrid.Width / MazeProp.Maze.Width;

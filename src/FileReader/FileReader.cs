@@ -38,14 +38,14 @@ namespace Tubes2_Ckptw.Utility
             }
 
             string[] splitFirst = mapBefSplit.Split('\n');
-            char[,] result = new char[splitFirst.Length, splitFirst[0].Split(" ").Length];
+            char[,] result = new char[splitFirst[0].Split(" ").Length, splitFirst.Length];
 
-            for (int i = 0; i < splitFirst.Length; i++)
+            for (int j = 0; j < splitFirst.Length; j++)
             {
-                string[] temp = splitFirst[i].Split(" ");
-                for (int j = 0; j < temp.Length; j++)
+                string[] temp = splitFirst[j].Split(" ");
+                for (int i = 0; i < temp.Length; i++)
                 {
-                    result[i, j] = temp[j].ToCharArray()[0];
+                    result[i, j] = temp[i].ToCharArray()[0];
                 }
             }
 

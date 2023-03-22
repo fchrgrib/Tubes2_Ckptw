@@ -22,6 +22,9 @@ namespace Tubes2_Ckptw.ViewModels
     {
         private FileReader fileReader;
         private BFS bfs;
+
+        public MazeView mazeView;
+
         public MazeViewModel() {
             fileReader = new FileReader("map1.txt");
             this.MazeableProp = new MazeProp();
@@ -47,6 +50,10 @@ namespace Tubes2_Ckptw.ViewModels
 
             this.Filename = fileReader.getNameFile;
 
+            if(mazeView != null)
+                mazeView.InitializeMazeGrid();
+
+            Debug.WriteLine(this.Mazeable.Width + " x " + this.Mazeable.Height);
         }
 
         private ObservableCollection<MazePath>? mazePaths;
