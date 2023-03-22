@@ -149,13 +149,14 @@ namespace Tubes2_Ckptw.src.DFS
 
                 if (check == 0)
                 {
-                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-currentDir.Item1;
-
-                    for (int i=0;i<((jumlah)-(currentDir.Item1 + currentDir.Item2-1));i++) {
+                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
+                    Debug.WriteLine(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
+                    for (int i=0;i<Math.Abs(jumlah-(currentDir.Item1 + currentDir.Item2-1));i++) {
                         Debug.WriteLine("masuk");
                         direction.RemoveAt(direction.Count - 1);
                     }
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
+                    
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
                 }
                 direction.Add(currentDir);
 
