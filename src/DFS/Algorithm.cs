@@ -13,24 +13,25 @@ namespace Tubes2_Ckptw.src.DFS
     {
 
 
-        //static void Main()
-        //{
-        //    FileReader.FileReader fr = new FileReader.FileReader("text.txt");
+        static void Main()
+        {
+            FileReader.FileReader fr = new FileReader.FileReader("text.txt");
 
 
-        //    DFS dfs = new DFS(fr.getMapMaze());
-        //    List<char> movement = dfs.getMovement();
-        //    Debug.WriteLine(movement.Count);
-        //    for (int i = 0; i < movement.Count; i++)
-        //    {
-                
-        //        Debug.WriteLine(movement[i]);
-        //    }
-        //}
+            DFS dfs = new DFS(fr.getMapMaze());
+            List<char> movement = dfs.getMovement();
+            Debug.WriteLine(movement.Count);
+            for (int i = 0; i < movement.Count; i++)
+            {
+
+                Debug.WriteLine(movement[i]);
+            }
+        }
         private char[,] mapMaze;
         private int row;
         private int col;
         private int treasure;
+        private List<Tuple<int,int>> liveNode = new List<Tuple<int,int>>();
         private Stack<Tuple<int,int>> stack = new Stack<Tuple<int,int>>();
 
 
@@ -69,6 +70,7 @@ namespace Tubes2_Ckptw.src.DFS
             Tuple<int, int> currentDir=this.stack.Pop();
             Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
             direction.Add(currentDir);
+            this.liveNode.Add(currentDir);
 
             
 
@@ -80,7 +82,7 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
-                        currentDir.Item1 - 1!= prevDir.Item1)
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1-1,currentDir.Item2)))
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
@@ -95,7 +97,7 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') &&(
-                        currentDir.Item1+1+currentDir.Item2!=prevDir.Item1+prevDir.Item2)
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1+1,currentDir.Item2)))
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
@@ -109,7 +111,7 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') &&(
-                        currentDir.Item2-1+currentDir.Item1!=prevDir.Item2+prevDir.Item1)
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1,currentDir.Item2-1)))
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -123,7 +125,7 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') &&(
-                        currentDir.Item2 + 1 + currentDir.Item1 != prevDir.Item2 + prevDir.Item1)
+                        isLiveNode(new Tuple<int,int>(currentDir.Item1,currentDir.Item2+1)))
                         )
                     {
 
@@ -146,21 +148,33 @@ namespace Tubes2_Ckptw.src.DFS
                 if (check == 0)
                 {
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
-                    for (int i=0;i<Math.Abs(jumlah-(currentDir.Item1 + currentDir.Item2-1));i++) {
-                        direction.RemoveAt(direction.Count - 1);
-                    }
+
+                        for (int i = 0; i < Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1)); i++)
+                        {
+                            direction.RemoveAt(direction.Count - 1);
+                        }
                     
                     prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
                 }
                 direction.Add(currentDir);
-
+                this.liveNode.Add(currentDir);
 
             }
 
             return direction;
         }
 
-        
+        private bool isLiveNode(Tuple<int,int> sample)
+        {
+            bool itIs = true;
+
+            for(int i = 0; i < this.liveNode.Count; i++)
+            {
+                if (sample.Item1 == this.liveNode[i].Item1 && sample.Item2 == this.liveNode[i].Item2) itIs = false;
+            }
+
+            return itIs;
+        }
 
 
     }
