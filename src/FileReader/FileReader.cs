@@ -35,7 +35,11 @@ namespace Tubes2_Ckptw.src.FileReader
                 string[] temp = splitFirst[i].Split(" ");
                 for (int j = 0; j < temp.Length; j++)
                 {
-                    result[i, j] = temp[j].ToCharArray()[0];
+                    try
+                    {
+                        result[i, j] = temp[j].ToCharArray()[0];
+                    }
+                    catch (IndexOutOfRangeException e) { }
                 }
             }
 
