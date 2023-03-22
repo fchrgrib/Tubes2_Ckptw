@@ -13,20 +13,20 @@ namespace Tubes2_Ckptw.src.DFS
     {
 
 
-        static void Main()
-        {
-            FileReader.FileReader fr = new FileReader.FileReader("text.txt");
+        //static void Main()
+        //{
+        //    FileReader.FileReader fr = new FileReader.FileReader("text.txt");
 
 
-            DFS dfs = new DFS(fr.getMapMaze());
-            List<char> movement = dfs.getMovement();
-            Debug.WriteLine(movement.Count);
-            for (int i = 0; i < movement.Count; i++)
-            {
+        //    DFS dfs = new DFS(fr.getMapMaze());
+        //    List<char> movement = dfs.getMovement();
+        //    Debug.WriteLine(movement.Count);
+        //    for (int i = 0; i < movement.Count; i++)
+        //    {
                 
-                Debug.WriteLine(movement[i]);
-            }
-        }
+        //        Debug.WriteLine(movement[i]);
+        //    }
+        //}
         private char[,] mapMaze;
         private int row;
         private int col;
