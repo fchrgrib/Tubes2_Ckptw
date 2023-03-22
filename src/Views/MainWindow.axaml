@@ -27,32 +27,43 @@
 		<Style Selector="StackPanel.LeftPanel">
 			<Setter Property="Background" Value="#84A1AD"></Setter>
 		</Style>
+			<Style Selector="StackPanel.LeftWrapper">
+				<Setter Property="Margin" Value="25"></Setter>
+			</Style>
+				<Style Selector="Button.VisualizeMaze">
+					<Setter Property="Width" Value="85">
+					</Setter>
+				</Style>
 		<Style Selector="Panel.MainPanel">
 			<Setter Property="Margin" Value="40, 40, 30, 40"></Setter>
 		</Style>
+			<Style Selector="Panel.MazeContainer">
+				<Setter Property="Background" Value="#DAEDF5"></Setter>
+				<!--<Setter Property="Orientation" Value="Horizontal"></Setter>-->
+				<Setter Property="Width" Value="1150"></Setter>
+				<Setter Property="HorizontalAlignment" Value="Center"></Setter>
+				<Setter Property="VerticalAlignment" Value="Center"></Setter>
+			</Style>
+				<Style Selector="TextBox.NameFile">
+					<Setter Property="Background" Value="#DAEDF5"></Setter>
+				</Style>
+				<Style Selector="Button.ReadFile">
+					<Setter Property="Background" Value="#DAEDF5"></Setter>
+				</Style>
 		<Style Selector="StackPanel.RightPanel">
 			<Setter Property="Background" Value="#DAEDF5"></Setter>
 		</Style>
-		<Style Selector="Panel.MazeContainer">
-			<Setter Property="Background" Value="#DAEDF5"></Setter>
-			<!--<Setter Property="Orientation" Value="Horizontal"></Setter>-->
-			<Setter Property="Width" Value="1150"></Setter>
-			<Setter Property="HorizontalAlignment" Value="Center"></Setter>
-			<Setter Property="VerticalAlignment" Value="Center"></Setter>
-		</Style>
-		<Style Selector="TextBox.NameFile">
-			<Setter Property="Background" Value="#DAEDF5"></Setter>
-		</Style>
-		<Style Selector="Button.ReadFile">
-			<Setter Property="Background" Value="#DAEDF5"></Setter>
-		</Style>
+
 	</Control.Styles>
 
 	<Grid ColumnDefinitions="1*, 4*, 1.2*" RowDefinitions="1*">
 
 		<StackPanel Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
-			<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
-			<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
+			<StackPanel Classes="LeftWrapper">
+				<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
+				<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
+				<Button Classes="VisualizeMaze">Visualize!</Button>
+			</StackPanel>
 		</StackPanel>
 		
 		<Panel Grid.Column="1" Grid.Row="0" Classes="MainPanel">
