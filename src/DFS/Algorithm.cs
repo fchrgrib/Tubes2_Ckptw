@@ -83,7 +83,6 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item1 - 1!= prevDir.Item1)
                         )
                     {
-                        Debug.WriteLine("masuk sini 1");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
                         check = 1;
                     }
@@ -99,7 +98,6 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item1+1+currentDir.Item2!=prevDir.Item1+prevDir.Item2)
                         )
                     {
-                        Debug.WriteLine("masuk sini 2");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
                         check = 1;
                     }
@@ -114,7 +112,6 @@ namespace Tubes2_Ckptw.src.DFS
                         currentDir.Item2-1+currentDir.Item1!=prevDir.Item2+prevDir.Item1)
                         )
                     {
-                        Debug.WriteLine("masuk sini 3");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
                         check = 1;
                     }
@@ -130,7 +127,6 @@ namespace Tubes2_Ckptw.src.DFS
                         )
                     {
 
-                        Debug.WriteLine("masuk sini 4");
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
                         check = 1;
                     }
@@ -150,9 +146,7 @@ namespace Tubes2_Ckptw.src.DFS
                 if (check == 0)
                 {
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
-                    Debug.WriteLine(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
                     for (int i=0;i<Math.Abs(jumlah-(currentDir.Item1 + currentDir.Item2-1));i++) {
-                        Debug.WriteLine("masuk");
                         direction.RemoveAt(direction.Count - 1);
                     }
                     
