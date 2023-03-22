@@ -60,6 +60,13 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref mazeable, value);
         }
 
+        private bool isSelectingBFS = true;
+        public bool IsSelectingBFS
+        {
+            get => isSelectingBFS;
+            set => this.RaiseAndSetIfChanged(ref isSelectingBFS, value);
+        }
+
         public void OnClickCommand()
         {
             fileReader.BrowseFiles();

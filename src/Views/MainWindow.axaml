@@ -51,7 +51,8 @@
 	<Grid ColumnDefinitions="1*, 4*, 1.2*" RowDefinitions="1*">
 
 		<StackPanel Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
-			<Button>tes</Button>
+			<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
+			<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
 		</StackPanel>
 		
 		<Panel Grid.Column="1" Grid.Row="0" Classes="MainPanel">
