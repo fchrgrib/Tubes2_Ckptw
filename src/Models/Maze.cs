@@ -1,4 +1,5 @@
-﻿using DynamicData;
+﻿using Avalonia.Media;
+using DynamicData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -55,7 +56,7 @@ namespace Tubes2_Ckptw.Models
             {
                 for (int j = 0; j < path.GetLength(1); j++)
                 {
-                    Debug.Write(path[i, j] + " ");
+                    Debug.Write(path[i, j].PathSymbol + " ");
                 }
                 Debug.WriteLine("");
             }
@@ -73,9 +74,43 @@ namespace Tubes2_Ckptw.Models
                         temp.Add(path[i, j]);
                     }
                 }
+                //Debug.WriteLine("ngambil " + temp.Count);
+                return temp.ToArray();
+            }
+        }
+
+        public IBrush[] BoundBrush
+        {
+            get
+            {
+                List<IBrush> temp = new List<IBrush>();
+                for(int i = 0; i < MazePaths.Length; i++)
+                {
+                    temp.Add(MazePaths[i].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black);
+                }
+                
+                return temp.ToArray();
+            }
+        }
+
+        public string[] BoundContent
+        {
+            get
+            {
+                List<string> temp =  new List<string>();
+                for(int i = 0; i < MazePaths.Length; i++)
+                {
+                    temp.Add(
+                        MazePaths[i].PathSymbol == MazePath.pathSymbol.KrustyKrab || MazePaths[i].PathSymbol == MazePath.pathSymbol.Treasure ?
+                            MazePaths[i].PathSymbol.ToString()
+                            :
+                            ""
+                    );
+                }
 
                 return temp.ToArray();
             }
+            
         }
     }
 }

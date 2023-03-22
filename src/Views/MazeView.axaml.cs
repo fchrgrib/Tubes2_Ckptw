@@ -8,6 +8,11 @@ using Avalonia.Media;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Reactive.Linq;
+using Tubes2_Ckptw.ViewModels;
+using System.Reactive.Subjects;
+using Avalonia.Data;
+using Avalonia.Data.Converters;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -34,7 +39,7 @@ namespace Tubes2_Ckptw.Views
             set
             {
                 SetValue(MazePropProperty, value);
-                UpdateMazeGrid();
+                InitializeMazeGrid();
             }
         }
 
@@ -45,13 +50,12 @@ namespace Tubes2_Ckptw.Views
 
         protected override void OnDataContextEndUpdate()
         {
-            UpdateMazeGrid();
+            InitializeMazeGrid();
             base.OnDataContextEndUpdate();
         }
         
-        public void UpdateMazeGrid()
+        public void InitializeMazeGrid()
         {
-            Debug.Print("Updating!");
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
             mazeGrid.Children.Clear();
             
@@ -82,11 +86,24 @@ namespace Tubes2_Ckptw.Views
             {
                 for (int j = 0; j < this.MazeProp.Maze.Width; j++)
                 {
-                    // content definition
-                    Button tb = new Button();
-                    tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString();
+                    int idx = i * MazeProp.Maze.Width + j; Debug.Write(idx + " -> ");
+                    var contentBinding = new Binding("MazeableProp.Maze.BoundContent[" + idx + "]");
+                    var brushBinding = new Binding("MazeableProp.Maze.BoundBrush[" + idx + "]");
 
-                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
+                    // content definition
+                    Button tb = new Button()
+                    {
+
+
+                        [!Button.ContentProperty] = contentBinding,
+                        [!Button.BackgroundProperty] = brushBinding
+                    };
+                    //tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j];
+                    
+                    
+                    //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
+
+                    //tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
                     tb.Foreground = Brushes.Black;
 
                     tb.Width = mazeGrid.Width / MazeProp.Maze.Width;
@@ -107,12 +124,6 @@ namespace Tubes2_Ckptw.Views
                 }
             }
         }
-
-        //protected override void OnDataContextEndUpdate()
-        //{
-            
-        //    base.OnDataContextEndUpdate();
-        //}
     }
 
     public class MazeProp: INotifyPropertyChanged
@@ -140,6 +151,7 @@ namespace Tubes2_Ckptw.Views
             }
 
             Debug.WriteLine("ganti si!");
+            this.maze.Print();
         }
     }
 }
