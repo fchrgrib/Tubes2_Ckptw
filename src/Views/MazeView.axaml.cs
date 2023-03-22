@@ -6,23 +6,35 @@ using Avalonia.Layout;
 using Tubes2_Ckptw.Models;
 using Avalonia.Media;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tubes2_Ckptw.Views
 {
     public partial class MazeView : UserControl
     {
-        public static readonly StyledProperty<Maze> UsedMazeProperty =
-          AvaloniaProperty.Register<MazeView, Maze>(nameof(UsedMazeProperty), defaultValue: new Maze());
-        public Maze UsedMaze
+        //public static readonly StyledProperty<Maze> UsedMazeProperty =
+        //  AvaloniaProperty.Register<MazeView, Maze>(nameof(UsedMazeProperty), defaultValue: new Maze());
+        //public Maze UsedMaze
+        //{
+        //    get { return GetValue(UsedMazeProperty); }
+        //    set
+        //    {
+        //        Debug.WriteLine("binding set!");
+        //        SetValue(UsedMazeProperty, value);
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        public static readonly StyledProperty<MazeProp> MazePropProperty =
+            AvaloniaProperty.Register<MazeView, MazeProp>(nameof(MazePropProperty), defaultValue: new MazeProp());
+        public MazeProp MazeProp
         {
-            get { return GetValue(UsedMazeProperty); }
+            get => GetValue(MazePropProperty);
             set
             {
-                if (value != GetValue(UsedMazeProperty))
-                {
-                    SetValue(UsedMazeProperty, value);
-                    UpdateMazeGrid();
-                }
+                SetValue(MazePropProperty, value);
+                UpdateMazeGrid();
             }
         }
 
@@ -50,7 +62,7 @@ namespace Tubes2_Ckptw.Views
             mazeGrid.HorizontalAlignment = HorizontalAlignment.Center;
             mazeGrid.VerticalAlignment = VerticalAlignment.Center;
 
-            for (int i = 0; i < this.UsedMaze.Height; i++)
+            for (int i = 0; i < this.MazeProp.Maze.Height; i++)
             {
                 RowDefinition row = new RowDefinition();
                 row.Height = new GridLength(1, GridUnitType.Star);
@@ -58,7 +70,7 @@ namespace Tubes2_Ckptw.Views
                 mazeGrid.RowDefinitions.Add(row);
             }
 
-            for (int j = 0; j < this.UsedMaze.Width; j++)
+            for (int j = 0; j < this.MazeProp.Maze.Width; j++)
             {
                 ColumnDefinition col = new ColumnDefinition();
                 col.Width = new GridLength(1, GridUnitType.Star);
@@ -66,19 +78,19 @@ namespace Tubes2_Ckptw.Views
                 mazeGrid.ColumnDefinitions.Add(col);
             }
 
-            for (int i = 0; i < this.UsedMaze.Height; i++)
+            for (int i = 0; i < this.MazeProp.Maze.Height; i++)
             {
-                for (int j = 0; j < this.UsedMaze.Width; j++)
+                for (int j = 0; j < this.MazeProp.Maze.Width; j++)
                 {
                     // content definition
                     Button tb = new Button();
-                    tb.Content = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].ToString();
+                    tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString();
 
-                    tb.Background = this.UsedMaze.MazePaths[i * this.UsedMaze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
                     tb.Foreground = Brushes.Black;
 
-                    tb.Width = mazeGrid.Width / UsedMaze.Width;
-                    tb.Height = mazeGrid.Height / UsedMaze.Height;
+                    tb.Width = mazeGrid.Width / MazeProp.Maze.Width;
+                    tb.Height = mazeGrid.Height / MazeProp.Maze.Height;
                     //Debug.WriteLine(i * this.UsedMaze.Width + j + tb.Text);
 
                     tb.HorizontalContentAlignment = HorizontalAlignment.Center;
@@ -101,5 +113,33 @@ namespace Tubes2_Ckptw.Views
             
         //    base.OnDataContextEndUpdate();
         //}
+    }
+
+    public class MazeProp: INotifyPropertyChanged
+    {
+        private Maze maze;
+        public Maze Maze
+        {
+            get => maze;
+            set { 
+                if(this.maze != value)
+                {
+                    this.maze = value;
+                    this.NotifyPropertyChanged("Maze");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            if(this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            Debug.WriteLine("ganti si!");
+        }
     }
 }

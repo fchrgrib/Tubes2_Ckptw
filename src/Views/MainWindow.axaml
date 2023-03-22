@@ -73,7 +73,7 @@
 					<TextBlock>DFS</TextBlock>
 				</StackPanel>
 				<Panel Grid.Column="0" Grid.Row="1" Classes="MazeContainer">
-					<local:MazeView UsedMaze="{Binding Mazeable, Mode=TwoWay}"/>
+					<local:MazeView MazeProp="{Binding MazeableProp, Mode=TwoWay}"/>
 				</Panel>
 				<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
 					<TextBlock Text="{Binding Filename, Mode=TwoWay}" Width="700" Height="60" Classes="NameFile"></TextBlock>

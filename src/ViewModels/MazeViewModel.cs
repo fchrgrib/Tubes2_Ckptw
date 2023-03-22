@@ -12,16 +12,22 @@ using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Tubes2_Ckptw.Views;
+using Tubes2_Ckptw.Algorithm;
 using ReactiveUI;
+
 
 namespace Tubes2_Ckptw.ViewModels
 {
     public class MazeViewModel : ReactiveObject
     {
         private FileReader fileReader;
+        private BFS bfs;
         public MazeViewModel() {
             fileReader = new FileReader("map1.txt");
-            
+            this.MazeableProp = new MazeProp();
+            //bfs = new BFS();
+
+            //bfs.solve();
             
             updateMazePath();
         }
@@ -30,6 +36,9 @@ namespace Tubes2_Ckptw.ViewModels
         {
             this.Mazeable = new Maze(fileReader.getMapMaze());
             this.Mazeable.Print();
+
+            this.MazeableProp.Maze = this.Mazeable;
+
             this.MazePaths = new ObservableCollection<MazePath>();
             foreach (var mp in this.Mazeable.MazePaths)
             {
@@ -60,6 +69,13 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref mazeable, value);
         }
 
+        private MazeProp? mazeableProp;
+        public MazeProp? MazeableProp
+        {
+            get => mazeableProp;
+            set => this.RaiseAndSetIfChanged(ref mazeableProp, value);
+        }
+
         private bool isSelectingBFS = true;
         public bool IsSelectingBFS
         {
@@ -67,9 +83,9 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref isSelectingBFS, value);
         }
 
-        public void OnClickCommand()
+        public async void OnClickCommand()
         {
-            fileReader.BrowseFiles();
+            await fileReader.BrowseFiles();
 
             updateMazePath();
         }

@@ -63,10 +63,6 @@ namespace Tubes2_Ckptw.Utility
 
             string[]? result = await fileDialog.ShowAsync(new Window());
 
-            //while(result == null)
-            //{
-            //    //result = await fileDialog.ShowAsync(window);
-            //}
             if(result == null)
             {
                 return string.Empty;
