@@ -80,7 +80,7 @@ namespace Tubes2_Ckptw.src.DFS
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
-                        currentDir.Item1 - 1+currentDir.Item2 != prevDir.Item1+prevDir.Item2)
+                        currentDir.Item1 - 1!= prevDir.Item1)
                         )
                     {
                         Debug.WriteLine("masuk sini 1");
@@ -149,7 +149,7 @@ namespace Tubes2_Ckptw.src.DFS
 
                 if (check == 0)
                 {
-                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2;
+                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-currentDir.Item1;
 
                     for (int i=0;i<((jumlah)-(currentDir.Item1 + currentDir.Item2-1));i++) {
                         Debug.WriteLine("masuk");
