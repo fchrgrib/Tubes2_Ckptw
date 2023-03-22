@@ -1,2 +1,5 @@
-A B C
-X Y Z
+R R T R R
+R R T R R
+R R T R R
+R R T R R
+R R K R R

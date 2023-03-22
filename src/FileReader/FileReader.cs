@@ -45,7 +45,11 @@ namespace Tubes2_Ckptw.Utility
                 string[] temp = splitFirst[j].Split(" ");
                 for (int i = 0; i < temp.Length; i++)
                 {
-                    result[i, j] = temp[i].ToCharArray()[0];
+                    try
+                    {
+                        result[i, j] = temp[i].ToCharArray()[0];
+                    }
+                    catch (IndexOutOfRangeException e) { }
                 }
             }
 
