@@ -75,11 +75,14 @@ namespace Tubes2_Ckptw.Utility
             return string.Join(" ", result);
         }
 
-        public async void BrowseFiles()
+        public async Task<bool> BrowseFiles()
         {
             Task<string> result = _getPath();
-            this.nameFile = Path.GetFileName(await result);
+            string res = await result;
 
+            this.nameFile = string.Compare(res, string.Empty) != 0 ? Path.GetFileName(res) : this.nameFile;
+
+            return true;
         }
     }
 }
