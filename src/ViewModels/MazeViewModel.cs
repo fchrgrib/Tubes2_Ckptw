@@ -83,11 +83,20 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref mazeableProp, value);
         }
 
+
+        // used as binding variable
         private bool isSelectingBFS = true;
         public bool IsSelectingBFS
         {
             get => isSelectingBFS;
             set => this.RaiseAndSetIfChanged(ref isSelectingBFS, value);
+        }
+
+        private bool isUsingTSP = false;
+        public bool IsUsingTSP
+        {
+            get => isUsingTSP;
+            set => this.RaiseAndSetIfChanged(ref isUsingTSP, value);
         }
 
         public async void OnClickCommand()

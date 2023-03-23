@@ -64,6 +64,7 @@
 			<StackPanel Classes="LeftWrapper">
 				<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
 				<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
+				<ToggleButton IsChecked="{Binding IsUsingTSP}">TSP</ToggleButton>
 				<Button Classes="VisualizeMaze">Visualize!</Button>
 			</StackPanel>
 		</StackPanel>
