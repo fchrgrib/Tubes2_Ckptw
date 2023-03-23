@@ -19,7 +19,7 @@ namespace Tubes2_Ckptw.src.DFS
 
 
             DFS dfs = new DFS(fr.getMapMaze());
-            List<char> movement = dfs.getMovementTreasure();
+            List<char> movement = dfs.getMovementTSP();
             Debug.WriteLine(movement.Count);
             for (int i = 0; i < movement.Count; i++)
             {
@@ -189,16 +189,23 @@ namespace Tubes2_Ckptw.src.DFS
                     int lebi = Math.Abs(Math.Abs(currentDir.Item1 - prevDir.Item1) - Math.Abs(currentDir.Item2 - prevDir.Item2));
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-(lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
-                   
 
 
-                        for (int i = 0; i < Math.Abs(calculate); i++)
-                        {
-                            direction.RemoveAt(direction.Count - 1);
-                        }
-                    
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
+
+                    //for (int i = 0; i < Math.Abs(calculate); i++)
+                    //{
+                    //    direction.RemoveAt(direction.Count - 1);
+                    //}
+                    while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
+                        direction[direction.Count - 1].Item2 != currentDir.Item2||
+                        ((Math.Abs(direction[direction.Count - 1].Item1-currentDir.Item1)+ Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2))!=1
+                        ))
+                    {
+                        direction.RemoveAt(direction.Count - 1);
+                    }
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
                 }
+                
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
@@ -216,7 +223,7 @@ namespace Tubes2_Ckptw.src.DFS
             Tuple<int, int> prevDir = new Tuple<int, int>(-1, -1);
             this.liveNode.Add(currentDir);
             this.stack.Push(currentDir);
-            this.lengthNode = direction.Count; 
+            this.lengthNode = direction.Count;
 
             int start = 1;
 
@@ -284,7 +291,6 @@ namespace Tubes2_Ckptw.src.DFS
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
                     {
-
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
                         check = 1;
                     }
@@ -307,13 +313,20 @@ namespace Tubes2_Ckptw.src.DFS
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
 
 
-
-                    for (int i = 0; i < Math.Abs(calculate); i++)
+                    //Debug.WriteLine("check");
+                    //Debug.WriteLine(direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2);
+                    //Debug.WriteLine(jumlah);
+                    //Debug.WriteLine(calculate);
+                    //for(int i=0;i<direction.Count;i++) Debug.WriteLine(direction[i]);
+                    while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
+                        direction[direction.Count - 1].Item2 != currentDir.Item2 ||
+                        ((Math.Abs(direction[direction.Count - 1].Item1 - currentDir.Item1) + Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2)) != 1
+                        ))
                     {
                         direction.RemoveAt(direction.Count - 1);
                     }
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
 
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1 - 1, direction[direction.Count - 1].Item2 - 1);
                 }
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
