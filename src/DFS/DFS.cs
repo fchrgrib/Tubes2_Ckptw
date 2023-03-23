@@ -17,14 +17,14 @@ namespace Tubes2_Ckptw.Algorithm
         //     FileReader.FileReader fr = new FileReader.FileReader("text.txt");
 
 
-        //     DFS dfs = new DFS(fr.getMapMaze());
-        //     List<char> movement = dfs.getMovementTSP();
-        //     Debug.WriteLine(movement.Count);
-        //     for (int i = 0; i < movement.Count; i++)
-        //     {
+            // DFS dfs = new DFS(fr.getMapMaze());
+            // List<char> movement = dfs.getMovementTreasure();
+            // Debug.WriteLine(movement.Count);
+            // for (int i = 0; i < movement.Count; i++)
+            // {
 
-        //         Debug.WriteLine(movement[i]);
-        //     }
+            //     Debug.WriteLine(movement[i]);
+            // }
         // }
         private Stopwatch sw = new Stopwatch();
         private int sizeStep;
@@ -33,8 +33,9 @@ namespace Tubes2_Ckptw.Algorithm
         private int row;
         private int col;
         private int treasure;
-        private List<Tuple<int, int>> liveNode = new List<Tuple<int, int>>();
-        private Stack<Tuple<int, int>> stack = new Stack<Tuple<int, int>>();
+        private List<Tuple<int,int>> liveNode = new List<Tuple<int,int>>();
+        private Stack<Tuple<int,int>> stack = new Stack<Tuple<int,int>>();
+        private Stack<Tuple<int, int>> stackDefault = new Stack<Tuple<int,int>>();
 
 
         public DFS(char[,] mapMaze)
@@ -50,10 +51,14 @@ namespace Tubes2_Ckptw.Algorithm
                     if (this.mapMaze[i, j] == 'T') this.treasure++;
                 }
             }
+
+            deepCopyStack(ref this.stackDefault, this.stack);
         }
 
         public List<char> getMovementTreasure()
         {
+            deepCopyStack(ref this.stack, this.stackDefault);
+
             sw.Reset();
             sw.Start();
             List<char> list = new List<char>();
@@ -72,6 +77,8 @@ namespace Tubes2_Ckptw.Algorithm
         }
         public List<char> getMovementTSP()
         {
+            deepCopyStack(ref this.stack, this.stackDefault);
+
             sw.Reset();
             sw.Start();
             List<char> list = new List<char>();
@@ -116,7 +123,6 @@ namespace Tubes2_Ckptw.Algorithm
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
             this.lengthNode = 0;
-
 
 
             while (this.treasure > 0)
@@ -215,7 +221,6 @@ namespace Tubes2_Ckptw.Algorithm
                     }
                     prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
                 }
-
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
@@ -360,5 +365,10 @@ namespace Tubes2_Ckptw.Algorithm
             return itIs;
         }
 
+
+        private void deepCopyStack<T>(ref Stack<T> to, Stack<T> from)
+        {
+            to = new Stack<T>(from);
+        }
     }
 }
