@@ -17,15 +17,18 @@ namespace Tubes2_Ckptw.Algorithm
         //     FileReader.FileReader fr = new FileReader.FileReader("text.txt");
 
 
-        //     DFS dfs = new DFS(fr.getMapMaze());
-        //     List<char> movement = dfs.getMovementTSP();
-        //     Debug.WriteLine(movement.Count);
-        //     for (int i = 0; i < movement.Count; i++)
-        //     {
+            // DFS dfs = new DFS(fr.getMapMaze());
+            // List<char> movement = dfs.getMovementTreasure();
+            // Debug.WriteLine(movement.Count);
+            // for (int i = 0; i < movement.Count; i++)
+            // {
 
-        //         Debug.WriteLine(movement[i]);
-        //     }
+            //     Debug.WriteLine(movement[i]);
+            // }
         // }
+        private Stopwatch sw = new Stopwatch();
+        private int sizeStep;
+        private int lengthNode;
         private char[,] mapMaze;
         private int row;
         private int col;
@@ -51,6 +54,8 @@ namespace Tubes2_Ckptw.Algorithm
 
         public List<char> getMovementTreasure()
         {
+            sw.Reset();
+            sw.Start();
             List<char> list = new List<char>();
             List<Tuple<int, int>> direction = getDirectionTreasure();
 
@@ -61,10 +66,14 @@ namespace Tubes2_Ckptw.Algorithm
                 if (direction[i + 1].Item2 - direction[i].Item2 == 1) list.Add('R');
                 if (direction[i + 1].Item2 - direction[i].Item2 == -1) list.Add('L');
             }
+            sw.Stop();
+            this.sizeStep = list.Count;
             return list;
         }
         public List<char> getMovementTSP()
         {
+            sw.Reset();
+            sw.Start();
             List<char> list = new List<char>();
             List<Tuple<int, int>> direction = getDirectionTSP();
 
@@ -75,8 +84,19 @@ namespace Tubes2_Ckptw.Algorithm
                 if (direction[i + 1].Item2 - direction[i].Item2 == 1) list.Add('R');
                 if (direction[i + 1].Item2 - direction[i].Item2 == -1) list.Add('L');
             }
+            sw.Stop();
+            this.sizeStep = list.Count;
             return list;
         }
+        public string getTimeExec()
+        {
+            return this.sw.ElapsedMilliseconds.ToString();
+        }
+        public int getStep()
+        {
+            return this.sizeStep;
+        }
+
         private List<Tuple<int,int>> getDirectionTreasure()
         {
             List<Tuple<int, int>> direction = new List<Tuple<int, int>>();
@@ -84,6 +104,7 @@ namespace Tubes2_Ckptw.Algorithm
             Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
+            this.lengthNode = 0;
 
             
 
@@ -164,7 +185,7 @@ namespace Tubes2_Ckptw.Algorithm
 
                 if (check == 0)
                 {
-                    int lebi = Math.Abs(currentDir.Item1 - prevDir.Item1 + currentDir.Item2 - prevDir.Item2) - 1;
+                    int lebi = Math.Abs(Math.Abs(currentDir.Item1 - prevDir.Item1) - Math.Abs(currentDir.Item2 - prevDir.Item2));
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-(lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
                    
@@ -181,6 +202,7 @@ namespace Tubes2_Ckptw.Algorithm
                 this.liveNode.Add(currentDir);
 
             }
+            this.lengthNode = this.liveNode.Count;
             this.stack.Clear();
             this.liveNode.Clear();
             return direction;
@@ -193,6 +215,7 @@ namespace Tubes2_Ckptw.Algorithm
             Tuple<int, int> prevDir = new Tuple<int, int>(-1, -1);
             this.liveNode.Add(currentDir);
             this.stack.Push(currentDir);
+            this.lengthNode = direction.Count; 
 
             int start = 1;
 
@@ -278,7 +301,7 @@ namespace Tubes2_Ckptw.Algorithm
 
                 if (check == 0)
                 {
-                    int lebi = Math.Abs(currentDir.Item1 - prevDir.Item1 + currentDir.Item2 - prevDir.Item2) - 1;
+                    int lebi = Math.Abs(Math.Abs(currentDir.Item1 - prevDir.Item1) - Math.Abs(currentDir.Item2 - prevDir.Item2));
                     int jumlah = direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2 - (lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
 
@@ -295,6 +318,7 @@ namespace Tubes2_Ckptw.Algorithm
                 this.liveNode.Add(currentDir);
 
             }
+            this.lengthNode += this.liveNode.Count;
             this.stack.Clear();
             this.liveNode.Clear();
             return direction;
@@ -311,7 +335,6 @@ namespace Tubes2_Ckptw.Algorithm
 
             return itIs;
         }
-
 
     }
 }
