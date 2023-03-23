@@ -93,7 +93,7 @@ namespace Tubes2_Ckptw.Models
                 }
 
                 getMazePath(selectedPoint).PathState =
-                    getMazePath(selectedPoint).PathState == MazePath.pathState.Travelled ?
+                    getMazePath(selectedPoint).PathState == MazePath.pathState.Travelled || getMazePath(selectedPoint).PathState == MazePath.pathState.Backtracked ?
                         MazePath.pathState.Backtracked
                         :
                         MazePath.pathState.Travelled;
