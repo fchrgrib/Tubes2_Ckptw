@@ -1,10 +1,12 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 // using fr = Tubes2_Ckptw.src.FileReader;
 // using Tubes2_Ckptw.src.Enums;
 
-namespace Tubes2_Ckptw.src.BFS{
+namespace Tubes2_Ckptw.Algorithm
+{
     internal class BFS{
         private Tuple<int, int> start;
         private int treasureCount = 0;
