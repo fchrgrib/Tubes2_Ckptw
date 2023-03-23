@@ -14,6 +14,7 @@ using System.Reactive.Subjects;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -231,6 +232,39 @@ namespace Tubes2_Ckptw.Views
             }
 
             return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
+        }
+    }
+
+    public class PathTraceConverter : IValueConverter
+    {
+        public static readonly PathTraceConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            string result = string.Empty;
+
+            if (value is List<char> dirPaths && targetType.IsAssignableTo(typeof(string)))
+            {
+                if (dirPaths.Count == 0)
+                {
+                    result = "Not Yet Solved."; //TODO : refresh this when change maze
+                }
+                else
+                {
+                    foreach(var path in dirPaths)
+                    {
+                        result += path + " ";
+                    }
+                }
+            }
+
+            return result;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
