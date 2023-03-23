@@ -133,13 +133,18 @@ namespace Tubes2_Ckptw.Views
 
                     //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
 
-                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.travelled ?
-                        Brushes.Green
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Travelled ?
+                        new SolidColorBrush(Color.Parse("#4F734C"))
                         :
-                        ( this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
-                             Brushes.White 
-                             : 
-                             Brushes.Black 
+                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Backtracked ?
+                            new SolidColorBrush(Color.Parse("#3B5938"))
+                            :
+                            ( 
+                                this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
+                                new SolidColorBrush(Color.Parse("#AEAEAE"))
+                                : 
+                                new SolidColorBrush(Color.Parse("#202020")
+                            )
                         )
                         ;
                     tb.Foreground = Brushes.Black;

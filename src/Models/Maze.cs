@@ -72,7 +72,7 @@ namespace Tubes2_Ckptw.Models
 
             int[] selectedPoint = getStartPoint();
 
-            getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+            getMazePath(selectedPoint).PathState = MazePath.pathState.Travelled;
 
             foreach(char c in mazeSolution)
             {
@@ -92,7 +92,11 @@ namespace Tubes2_Ckptw.Models
                         break;
                 }
 
-                getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+                getMazePath(selectedPoint).PathState =
+                    getMazePath(selectedPoint).PathState == MazePath.pathState.Travelled ?
+                        MazePath.pathState.Backtracked
+                        :
+                        MazePath.pathState.Travelled;
             }
         }
 
@@ -100,7 +104,7 @@ namespace Tubes2_Ckptw.Models
         {
             foreach (var path in MazePaths)
             {
-                path.PathState = MazePath.pathState.untravelled;
+                path.PathState = MazePath.pathState.Untravelled;
             }
         }
 
