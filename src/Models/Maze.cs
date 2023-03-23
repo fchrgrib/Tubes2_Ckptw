@@ -26,18 +26,19 @@ namespace Tubes2_Ckptw.Models
         {
             Width = 0;
             Height = 0;
-            path = new MazePath[Width, Height]; 
+
+            path = new MazePath[Height, Width]; 
         }
         public Maze(char[,] _maze)
         {
             Width = _maze.GetLength(1);     // j
             Height = _maze.GetLength(0);    // i
 
-            path = new MazePath[Width, Height];
+            path = new MazePath[Height, Width];
 
-            for (int i = 0; i < Width; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < Height; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     path[i, j] = new MazePath(_maze[i, j]);
                 }
