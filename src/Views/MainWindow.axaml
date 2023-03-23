@@ -108,7 +108,7 @@
 						<Panel Grid.Column="0" Grid.Row="1" Classes="MazeContainer" Name="_MazeContainer">
 							<local:MazeView MazeProp="{Binding MazeableProp, Mode=TwoWay}" Name="_MazeView"/>
 						</Panel>
-						<Grid ColumnDefinitions="7.5*, 0.4*, 1*" RowDefinitions="3*, 1.2*, 3*" Grid.Column="0" Grid.Row="2">
+						<Grid ColumnDefinitions="7.5*, 0.4*, 1*" RowDefinitions="3*, 1.8*, 3*" Grid.Column="0" Grid.Row="2">
 							<Panel Grid.Column="0" Grid.Row="1" Name="NameFile">
 								<TextBlock Text="{Binding Filename, Converter={StaticResource filenameConverter}}" Padding="10" VerticalAlignment="Center"></TextBlock>	
 							</Panel>
@@ -125,18 +125,18 @@
 				<TextBlock Grid.Column="1" Grid.Row="3">Steps</TextBlock>
 				<Grid ColumnDefinitions="1*, 1*" RowDefinitions="1*" Grid.Column="1" Grid.Row="4">
 					<Border Classes="RightPanel_Desc" Grid.Column="0" Grid.Row="0">
-							<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>		
+							<TextBlock Text="{Binding SolutionSteps}"></TextBlock>		
 					</Border>
 				</Grid>
 				<TextBlock Grid.Column="1" Grid.Row="5">Nodes</TextBlock>
 				<Grid ColumnDefinitions="1*, 1*" RowDefinitions="1*" Grid.Column="1" Grid.Row="6">
 					<Border Classes="RightPanel_Desc" Grid.Column="0" Grid.Row="0">
-							<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>		
+							<TextBlock Text="{Binding SolutionNode}"></TextBlock>		
 					</Border>
 				</Grid>					
 				<TextBlock Grid.Column="1" Grid.Row="7">Execution Time</TextBlock>
 				<Border Classes="RightPanel_Desc" Grid.Column="1" Grid.Row="8">
-					<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>	
+					<TextBlock Text="{Binding SolutionTimeExec}"></TextBlock>	
 				</Border>
 			
 			</Grid>

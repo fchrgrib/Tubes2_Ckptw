@@ -63,7 +63,7 @@ namespace Tubes2_Ckptw.Models
             }
         }
 
-        public void UpdatePathState(List<char> mazeSolution)
+        public void UpdateSolutionState(List<char> mazeSolution)
         {
             if(getKrustyCount() != 1)
             {
@@ -93,6 +93,14 @@ namespace Tubes2_Ckptw.Models
                 }
 
                 getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+            }
+        }
+
+        public void ResetSolutionState()
+        {
+            foreach (var path in MazePaths)
+            {
+                path.PathState = MazePath.pathState.untravelled;
             }
         }
 

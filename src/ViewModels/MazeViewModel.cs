@@ -27,24 +27,14 @@ namespace Tubes2_Ckptw.ViewModels
         public MazeView mazeView;
         public Screens currentScreens;
 
+        private bool hadSolved = false;
+        private bool lastSolveBFS = false;
+
         public MazeViewModel() {
             fileReader = new FileReader();
 
-            this.MazeableProp = new MazeProp();
-            
+            this.MazeableProp = new MazeProp();   
 
-            //bfs = new BFS();
-
-            //bfs.solve();
-
-            //FileReader dummy = new FileReader("map1.txt");
-            //dfs = new DFS(dummy.getMapMaze());
-            //foreach(var xx in dfs.getMovementTreasure())
-            //{
-            //    Debug.WriteLine(xx);
-            //}
-
-            
             updateMazePath();
         }
 
@@ -121,40 +111,86 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref solutionPath, value);
         }
 
+        private int solutionSteps;
+        public int SolutionSteps
+        {
+            get => solutionSteps;
+            set => this.RaiseAndSetIfChanged(ref solutionSteps, value);
+        }
+
+        private int solutionNode;
+        public int SolutionNode
+        {
+            get => solutionNode;
+            set => this.RaiseAndSetIfChanged(ref solutionNode, value);
+        }
+
+        private string solutionTimeExec;
+        public string SolutionTimeExec
+        {
+            get => solutionTimeExec;
+            set => this.RaiseAndSetIfChanged(ref solutionTimeExec, value);
+        }
+
+
 
         public async void OnClickCommand()
         {
+            if(this.Mazeable != null)
+                this.Mazeable.ResetSolutionState();
+
             await fileReader.BrowseFiles();
 
             updateMazePath();
+
+            this.hadSolved = false;
         }
 
         public void UpdateMazePathState()
         {
-            if (this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
+            if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
                 return;
 
-            if (isUsingTSP)
+            if (this.hadSolved && this.lastSolveBFS != this.IsSelectingBFS)
+                this.hadSolved = false;
+
+            if (!hadSolved)
             {
-                if(isSelectingBFS) {
+                if (isUsingTSP)
+                {
+                    if (isSelectingBFS)
+                    {
+                        //this.SolutionPath = this.bfs.sol
+                    }
+                    else
+                    {
+                        this.SolutionPath = this.dfs.getMovementTSP();
+                    }
                 }
-                else {
-                    this.SolutionPath = this.dfs.getMovementTSP();
-                }
-            } else
-            {
-                if (isSelectingBFS) {
-                    this.SolutionPath = this.bfs.solve();
-                }
-                else {
-                    this.SolutionPath = this.dfs.getMovementTreasure();
+                else
+                {
+                    if (isSelectingBFS)
+                    {
+                        this.SolutionPath = this.bfs.solve();
+                    }
+                    else
+                    {
+                        this.SolutionPath = this.dfs.getMovementTreasure();
+                        this.SolutionSteps = this.dfs.getStep();
+                        this.SolutionNode =  this.dfs.getNode();
+                        this.SolutionTimeExec = this.dfs.getTimeExec();
+                    }
                 }
             }
+            
 
-            this.mazeable.UpdatePathState(this.solutionPath);
+            this.Mazeable.ResetSolutionState();
+            this.Mazeable.UpdateSolutionState(this.SolutionPath);
 
             if (mazeView != null)
                 mazeView.InitializeMazeGrid();
+
+            this.hadSolved = true;
         }
     }
 }
