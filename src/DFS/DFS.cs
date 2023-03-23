@@ -221,7 +221,6 @@ namespace Tubes2_Ckptw.Algorithm
                     }
                     prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
                 }
-
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
