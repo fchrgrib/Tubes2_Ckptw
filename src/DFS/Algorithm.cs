@@ -19,7 +19,7 @@ namespace Tubes2_Ckptw.src.DFS
 
 
             DFS dfs = new DFS(fr.getMapMaze());
-            List<char> movement = dfs.getMovementTSP();
+            List<char> movement = dfs.getMovementTreasure();
             Debug.WriteLine(movement.Count);
             for (int i = 0; i < movement.Count; i++)
             {
@@ -165,7 +165,11 @@ namespace Tubes2_Ckptw.src.DFS
 
                 if (check == 0)
                 {
-                    int lebi = Math.Abs(currentDir.Item1 - prevDir.Item1 + currentDir.Item2 - prevDir.Item2) - 1;
+                    Debug.WriteLine("masuk");
+                    Debug.WriteLine(prevDir);
+                    Debug.WriteLine(currentDir);
+                    int lebi = Math.Abs(currentDir.Item1 - prevDir.Item1 + currentDir.Item2 - prevDir.Item2) -1;
+                    Debug.WriteLine(lebi);
                     int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-(lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
                    
