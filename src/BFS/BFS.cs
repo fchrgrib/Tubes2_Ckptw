@@ -90,15 +90,21 @@ namespace Tubes2_Ckptw.Algorithm{
                 var bfs_tuple = q.Dequeue();
                 var (current_row, current_col) = bfs_tuple.position;
 
-                //Debug.WriteLine(String.Format("{0} {1} {2}", bfs_tuple.position, bfs_tuple.path, bfs_tuple.treasures.Count));
+                Debug.WriteLine(String.Format("{0} {1} {2}", bfs_tuple.position, bfs_tuple.path, bfs_tuple.treasures.Count));
                 if (bfs_tuple.treasures.Count == treasureCount) {
+                    Debug.WriteLine("Return");
+                    while (bfs_tuple.stack.Count != 0)
+                    {
+                        Debug.WriteLine(String.Format("{0}", bfs_tuple.stack.Pop()));
+                    }
                     return bfs_tuple.path.ToList();
                 }
 
-                //Debug.WriteLine(allNeighboursVisited(bfs_tuple));
-                //if(bfs_tuple.stack.Count!=0) Debug.WriteLine(String.Format("{0} {1} {2}", bfs_tuple.treasures.Count, bfs_tuple.stack.Peek().Item2, bfs_tuple.stack.Peek().Item1));
+                Debug.WriteLine(allNeighboursVisited(bfs_tuple));
+                if(bfs_tuple.stack.Count!=0) Debug.WriteLine(String.Format("stack {0} {1} {2}", bfs_tuple.treasures.Count, bfs_tuple.stack.Peek().Item2, bfs_tuple.stack.Peek().Item1));
                 if (allNeighboursVisited(bfs_tuple) && bfs_tuple.stack.Count != 0 && bfs_tuple.treasures.Count > bfs_tuple.stack.Peek().Item2) // backtrack
                 {
+                    Debug.WriteLine("a");
                     var (previousPosition, previousTreasureCount, previousDirection) = bfs_tuple.stack.Pop();
                     bfs_tuple.path_list.Add(bfs_tuple.position);
                     var newPath = bfs_tuple.path + reverseDirection(previousDirection);
@@ -115,7 +121,15 @@ namespace Tubes2_Ckptw.Algorithm{
                 }
                 if(bfs_tuple.visited[current_row, current_col]>0 && !(bfs_tuple.stack.Count != 0 && bfs_tuple.treasures.Count > bfs_tuple.stack.Peek().Item2))
                 {
-                    //Debug.WriteLine("hayo");
+                    Debug.WriteLine("b");
+                    for(int row = 0; row<height; row++)
+                    {
+                        for(int col = 0; col<width; col++)
+                        {
+                            Debug.Write(String.Format("{0} ", bfs_tuple.visited[row, col]));
+                        }
+                        Debug.WriteLine("");
+                    }
                     continue;
                 }
                 bfs_tuple.visited[current_row,current_col]++;
@@ -132,8 +146,23 @@ namespace Tubes2_Ckptw.Algorithm{
                     var newStack = new Stack<Tuple<Tuple<int, int>, int, char>>(new Stack<Tuple<Tuple<int,int>, int, char>>(bfs_tuple.stack));
                     if(!allNeighboursVisited(bfs_tuple))newStack.Push(Tuple.Create(bfs_tuple.position, bfs_tuple.treasures.Count, direction));
 
-                    q.Enqueue(new BFS_Tuple(bfs_tuple.path+direction, newPathList, newTreasures, neighbour, newStack, bfs_tuple.visited));
+                    var newVisited = new int[height, width];
+                    if (newTreasures.Count > bfs_tuple.treasures.Count)
+                    {
+                        foreach (var path in newPathList)
+                        {
+                            newVisited[path.Item1, path.Item2]++;
+                        }
+                    }
+                    else
+                    {
+                        newVisited = bfs_tuple.visited;
+                    }
+
+                    q.Enqueue(new BFS_Tuple(bfs_tuple.path+direction, newPathList, newTreasures, neighbour, newStack, newVisited));
                 }
+
+                Debug.WriteLine("");
             }
             return "".ToList();
             //return "Tidak ada solusi".ToCharArray();
