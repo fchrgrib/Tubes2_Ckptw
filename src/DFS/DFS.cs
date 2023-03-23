@@ -126,9 +126,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2)) &&
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R')  &&
+                        (this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
@@ -142,9 +141,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2)) &&
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
+                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') &&
+                        (this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
@@ -157,9 +155,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R')  &&
+                        (this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -172,9 +169,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R')  &&
+                        (this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
                     {
 
@@ -247,9 +243,8 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R' ||
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'K') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2)) &&
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'K')  &&
+                        (this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2));
@@ -264,9 +259,8 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R' ||
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'K') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2)) &&
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
+                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'K')  &&
+                        (this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2));
@@ -280,9 +274,8 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'K') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'K')  &&
+                        (this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -296,9 +289,8 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'K') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'K')  &&
+                        (this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
