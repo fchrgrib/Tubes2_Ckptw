@@ -137,6 +137,7 @@ namespace Tubes2_Ckptw.ViewModels
             if (isUsingTSP)
             {
                 if(isSelectingBFS) {
+                    this.SolutionPath = this.bfs.solve(true);
                 }
                 else {
                     this.SolutionPath = this.dfs.getMovementTSP();
@@ -144,7 +145,7 @@ namespace Tubes2_Ckptw.ViewModels
             } else
             {
                 if (isSelectingBFS) {
-                    this.SolutionPath = this.bfs.solve();
+                    this.SolutionPath = this.bfs.solve(false);
                 }
                 else {
                     this.SolutionPath = this.dfs.getMovementTreasure();
