@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="{Binding WindowWidth}" d:DesignHeight="{Binding	WindowHeight}"
 		Foreground="Black"
-		
 		Background="WhiteSmoke"
 		WindowState="Maximized"
+		HasSystemDecorations="False"
         x:Class="Tubes2_Ckptw.Views.MainWindow"
 		xmlns:local="using:Tubes2_Ckptw.Views"
 		xmlns:mz="using:Tubes2_Ckptw.Utility"
-		
         Icon="/src/Assets/avalonia-logo.ico"
         Title="Tubes2_Ckptw">
 	<!--TransparencyLevelHint="AcrylicBlur"
