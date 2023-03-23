@@ -114,6 +114,14 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref isUsingTSP, value);
         }
 
+        private List<char> solutionPath;
+        public List<char> SolutionPath
+        {
+            get => solutionPath;
+            set => this.RaiseAndSetIfChanged(ref solutionPath, value);
+        }
+
+
         public async void OnClickCommand()
         {
             await fileReader.BrowseFiles();
@@ -130,7 +138,7 @@ namespace Tubes2_Ckptw.ViewModels
             {
                 if(isSelectingBFS) { }
                 else {
-                    this.mazeable.UpdatePathState(this.dfs.getMovementTSP());
+                    this.SolutionPath = this.dfs.getMovementTSP();
                 }
             } else
             {
@@ -138,9 +146,11 @@ namespace Tubes2_Ckptw.ViewModels
                     
                 }
                 else {
-                    this.Mazeable.UpdatePathState(this.dfs.getMovementTreasure());
+                    this.SolutionPath = this.dfs.getMovementTreasure();
                 }
             }
+
+            this.mazeable.UpdatePathState(this.solutionPath);
 
             if (mazeView != null)
                 mazeView.InitializeMazeGrid();

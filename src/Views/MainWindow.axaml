@@ -57,6 +57,7 @@
 	<Control.Resources>
 		<local:IsSelectingBFSConverter x:Key="bfsConverter"/>
 		<local:SelectedFileNameConverter x:Key="filenameConverter"/>
+		<local:PathTraceConverter x:Key="pathTraceConverter"/>
 	</Control.Resources>
 
 	<Grid ColumnDefinitions="1*, 4*, 1.2*" RowDefinitions="1*">
@@ -86,7 +87,9 @@
 			</Grid>
 		</Panel>
 		
-		<StackPanel Grid.Column="2" Grid.Row="0" Classes="RightPanel"></StackPanel>
+		<StackPanel Grid.Column="2" Grid.Row="0" Classes="RightPanel">
+			<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}" Background="Red"></TextBlock>
+		</StackPanel>
 		
 	</Grid>
    

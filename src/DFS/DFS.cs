@@ -80,7 +80,7 @@ namespace Tubes2_Ckptw.Algorithm
         private List<Tuple<int,int>> getDirectionTreasure()
         {
             List<Tuple<int, int>> direction = new List<Tuple<int, int>>();
-            Tuple<int, int> currentDir=this.stack.Pop();
+            Tuple<int, int> currentDir=this.stack.Pop(); // TODO : make this pop different stack; otherwise error will occur if user tries to visualize twice on the same map without re-loading maze
             Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
