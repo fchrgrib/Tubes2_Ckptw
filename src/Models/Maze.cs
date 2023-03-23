@@ -24,15 +24,15 @@ namespace Tubes2_Ckptw.Models
 
         public Maze()
         {
-            Width = 0;
             Height = 0;
+            Width = 0;
 
             path = new MazePath[Height, Width]; 
         }
         public Maze(char[,] _maze)
         {
-            Width = _maze.GetLength(1);     // j
             Height = _maze.GetLength(0);    // i
+            Width = _maze.GetLength(1);     // j
 
             path = new MazePath[Height, Width];
 
@@ -78,40 +78,6 @@ namespace Tubes2_Ckptw.Models
                 //Debug.WriteLine("ngambil " + temp.Count);
                 return temp.ToArray();
             }
-        }
-
-        public IBrush[] BoundBrush
-        {
-            get
-            {
-                List<IBrush> temp = new List<IBrush>();
-                for(int i = 0; i < MazePaths.Length; i++)
-                {
-                    temp.Add(MazePaths[i].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black);
-                }
-                
-                return temp.ToArray();
-            }
-        }
-
-        public string[] BoundContent
-        {
-            get
-            {
-                List<string> temp =  new List<string>();
-                for(int i = 0; i < MazePaths.Length; i++)
-                {
-                    temp.Add(
-                        MazePaths[i].PathSymbol == MazePath.pathSymbol.KrustyKrab || MazePaths[i].PathSymbol == MazePath.pathSymbol.Treasure ?
-                            MazePaths[i].PathSymbol.ToString()
-                            :
-                            ""
-                    );
-                }
-
-                return temp.ToArray();
-            }
-            
         }
     }
 }

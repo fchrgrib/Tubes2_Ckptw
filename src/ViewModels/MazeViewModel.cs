@@ -32,6 +32,14 @@ namespace Tubes2_Ckptw.ViewModels
             //bfs = new BFS();
 
             //bfs.solve();
+
+            FileReader dummy = new FileReader("map1.txt");
+            dfs = new DFS(dummy.getMapMaze());
+            foreach(var xx in dfs.getMovementTreasure())
+            {
+                Debug.WriteLine(xx);
+            }
+
             
             updateMazePath();
         }
