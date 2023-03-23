@@ -20,7 +20,9 @@ namespace Tubes2_Ckptw.src.DFS
 
             DFS dfs = new DFS(fr.getMapMaze());
             List<char> movement = dfs.getMovementTSP();
-            Debug.WriteLine(movement.Count);
+            Debug.WriteLine(dfs.getStep());
+            Debug.WriteLine(dfs.getTimeExec()+"ms");
+            Debug.WriteLine(dfs.getNode());
             for (int i = 0; i < movement.Count; i++)
             {
 
@@ -96,6 +98,10 @@ namespace Tubes2_Ckptw.src.DFS
         public int getStep()
         {
             return this.sizeStep;
+        }
+        public int getNode()
+        {
+            return this.lengthNode;
         }
 
         private List<Tuple<int,int>> getDirectionTreasure()
