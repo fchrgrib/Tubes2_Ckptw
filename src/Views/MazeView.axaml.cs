@@ -124,7 +124,15 @@ namespace Tubes2_Ckptw.Views
 
                     //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
 
-                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? Brushes.White : Brushes.Black;
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.travelled ?
+                        Brushes.Green
+                        :
+                        ( this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
+                             Brushes.White 
+                             : 
+                             Brushes.Black 
+                        )
+                        ;
                     tb.Foreground = Brushes.Black;
 
                     tb.Width = mazeGrid.Width / MazeProp.Maze.Width;

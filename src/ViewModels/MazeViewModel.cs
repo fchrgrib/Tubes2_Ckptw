@@ -28,17 +28,20 @@ namespace Tubes2_Ckptw.ViewModels
 
         public MazeViewModel() {
             fileReader = new FileReader();
+
             this.MazeableProp = new MazeProp();
+            
+
             //bfs = new BFS();
 
             //bfs.solve();
 
-            FileReader dummy = new FileReader("map1.txt");
-            dfs = new DFS(dummy.getMapMaze());
-            foreach(var xx in dfs.getMovementTreasure())
-            {
-                Debug.WriteLine(xx);
-            }
+            //FileReader dummy = new FileReader("map1.txt");
+            //dfs = new DFS(dummy.getMapMaze());
+            //foreach(var xx in dfs.getMovementTreasure())
+            //{
+            //    Debug.WriteLine(xx);
+            //}
 
             
             updateMazePath();
@@ -47,11 +50,13 @@ namespace Tubes2_Ckptw.ViewModels
         private void updateMazePath()
         {
             this.Mazeable = new Maze(fileReader.getMapMaze());
-            //this.Mazeable.Print();
+            //this.bfs = new BFS(fileReader.getMapMaze());
+            this.dfs = new DFS(fileReader.getMapMaze());
+
 
             this.MazeableProp.Maze = this.Mazeable;
-
             this.MazePaths = new ObservableCollection<MazePath>();
+
             foreach (var mp in this.Mazeable.MazePaths)
             {
                 this.MazePaths.Add(mp);
@@ -113,6 +118,31 @@ namespace Tubes2_Ckptw.ViewModels
             await fileReader.BrowseFiles();
 
             updateMazePath();
+        }
+
+        public void UpdateMazePathState()
+        {
+            if (this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
+                return;
+
+            if (isUsingTSP)
+            {
+                if(isSelectingBFS) { }
+                else {
+                    this.mazeable.UpdatePathState(this.dfs.getMovementTSP());
+                }
+            } else
+            {
+                if (isSelectingBFS) { 
+                    
+                }
+                else {
+                    this.Mazeable.UpdatePathState(this.dfs.getMovementTreasure());
+                }
+            }
+
+            if (mazeView != null)
+                mazeView.InitializeMazeGrid();
         }
     }
 }

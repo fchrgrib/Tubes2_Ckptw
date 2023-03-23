@@ -63,6 +63,39 @@ namespace Tubes2_Ckptw.Models
             }
         }
 
+        public void UpdatePathState(List<char> mazeSolution)
+        {
+            if(getKrustyCount() != 1)
+            {
+                Debug.WriteLine("WARNING : THERE ARE MORE THAN ONE START POINT! ERROR MAY OCCUR!");
+            }
+
+            int[] selectedPoint = getStartPoint();
+
+            getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+
+            foreach(char c in mazeSolution)
+            {
+                switch (c)
+                {
+                    case 'L':
+                        selectedPoint[1]--;
+                        break;
+                    case 'R':
+                        selectedPoint[1]++;
+                        break;
+                    case 'U':
+                        selectedPoint[0]--;
+                        break;
+                    case 'D':
+                        selectedPoint[0]++;
+                        break;
+                }
+
+                getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+            }
+        }
+
         public MazePath[] MazePaths
         {
             get
@@ -79,5 +112,44 @@ namespace Tubes2_Ckptw.Models
                 return temp.ToArray();
             }
         }
+
+        public MazePath getMazePath(int i, int j)
+        {
+            return MazePaths[i * this.Width + j];
+        }
+
+        public MazePath getMazePath(int[] idx)
+        {
+            return MazePaths[idx[0] * this.Width + idx[1]];
+        }
+
+        private int getKrustyCount()
+        {
+            int count = 0;
+            foreach(var path in MazePaths)
+            {
+                if (path.PathSymbol == MazePath.pathSymbol.KrustyKrab)
+                    count++;
+            }
+
+            return count;
+        }
+
+        private int[] getStartPoint()
+        {
+            for(int i = 0; i < this.Height; i++)
+            {
+                for(int j = 0; j < this.Width; j++)
+                {
+                    if (getMazePath(i, j).PathSymbol == MazePath.pathSymbol.KrustyKrab)
+                    {
+                        return new int[] { i, j };
+                    }
+                }
+            }
+
+            return new int[2];
+        }
+            
     }
 }
