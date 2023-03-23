@@ -4,29 +4,28 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tubes2_Ckptw.src.FileReader;
-using static Tubes2_Ckptw.src.FileReader.FileReader;
+using Tubes2_Ckptw.Utility;
 
-namespace Tubes2_Ckptw.src.DFS
+namespace Tubes2_Ckptw.Algorithm
 {
     internal class DFS
     {
 
 
-        static void Main()
-        {
-            FileReader.FileReader fr = new FileReader.FileReader("text.txt");
+        // static void Main()
+        // {
+        //     FileReader.FileReader fr = new FileReader.FileReader("text.txt");
 
 
-            DFS dfs = new DFS(fr.getMapMaze());
-            List<char> movement = dfs.getMovementTreasure();
-            Debug.WriteLine(movement.Count);
-            for (int i = 0; i < movement.Count; i++)
-            {
+        //     DFS dfs = new DFS(fr.getMapMaze());
+        //     List<char> movement = dfs.getMovementTSP();
+        //     Debug.WriteLine(movement.Count);
+        //     for (int i = 0; i < movement.Count; i++)
+        //     {
 
-                Debug.WriteLine(movement[i]);
-            }
-        }
+        //         Debug.WriteLine(movement[i]);
+        //     }
+        // }
         private char[,] mapMaze;
         private int row;
         private int col;
@@ -81,7 +80,7 @@ namespace Tubes2_Ckptw.src.DFS
         private List<Tuple<int,int>> getDirectionTreasure()
         {
             List<Tuple<int, int>> direction = new List<Tuple<int, int>>();
-            Tuple<int, int> currentDir=this.stack.Pop();
+            Tuple<int, int> currentDir=this.stack.Pop(); // TODO : make this pop different stack; otherwise error will occur if user tries to visualize twice on the same map without re-loading maze
             Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
