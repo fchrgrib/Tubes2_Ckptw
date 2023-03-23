@@ -29,6 +29,7 @@ namespace Tubes2_Ckptw.src.DFS
         }
         private Stopwatch sw = new Stopwatch();
         private int sizeStep;
+        private int lengthNode;
         private char[,] mapMaze;
         private int row;
         private int col;
@@ -104,6 +105,7 @@ namespace Tubes2_Ckptw.src.DFS
             Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
+            this.lengthNode = 0;
 
             
 
@@ -201,6 +203,7 @@ namespace Tubes2_Ckptw.src.DFS
                 this.liveNode.Add(currentDir);
 
             }
+            this.lengthNode = this.liveNode.Count;
             this.stack.Clear();
             this.liveNode.Clear();
             return direction;
@@ -213,6 +216,7 @@ namespace Tubes2_Ckptw.src.DFS
             Tuple<int, int> prevDir = new Tuple<int, int>(-1, -1);
             this.liveNode.Add(currentDir);
             this.stack.Push(currentDir);
+            this.lengthNode = direction.Count; 
 
             int start = 1;
 
@@ -315,6 +319,7 @@ namespace Tubes2_Ckptw.src.DFS
                 this.liveNode.Add(currentDir);
 
             }
+            this.lengthNode += this.liveNode.Count;
             this.stack.Clear();
             this.liveNode.Clear();
             return direction;
