@@ -76,8 +76,8 @@
 					<TextBlock>Maze!</TextBlock>
 					<TextBlock Text="{Binding IsSelectingBFS, Converter={StaticResource bfsConverter}}"></TextBlock>
 				</StackPanel>
-				<Panel Grid.Column="0" Grid.Row="1" Classes="MazeContainer">
-					<local:MazeView MazeProp="{Binding MazeableProp, Mode=TwoWay}"/>
+				<Panel Grid.Column="0" Grid.Row="1" Classes="MazeContainer" Name="_MazeContainer">
+					<local:MazeView MazeProp="{Binding MazeableProp, Mode=TwoWay}" Name="_MazeView"/>
 				</Panel>
 				<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
 					<TextBlock Text="{Binding Filename, Converter={StaticResource filenameConverter}}" Width="700" Height="60" Classes="NameFile"></TextBlock>

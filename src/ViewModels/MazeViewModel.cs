@@ -25,6 +25,7 @@ namespace Tubes2_Ckptw.ViewModels
         private DFS dfs;
 
         public MazeView mazeView;
+        public Screens currentScreens;
 
         public MazeViewModel() {
             fileReader = new FileReader();
