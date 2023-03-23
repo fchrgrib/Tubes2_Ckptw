@@ -56,6 +56,7 @@
 	</Control.Styles>
 	<Control.Resources>
 		<local:IsSelectingBFSConverter x:Key="bfsConverter"/>
+		<local:SelectedFileNameConverter x:Key="filenameConverter"/>
 	</Control.Resources>
 
 	<Grid ColumnDefinitions="1*, 4*, 1.2*" RowDefinitions="1*">
@@ -79,7 +80,7 @@
 					<local:MazeView MazeProp="{Binding MazeableProp, Mode=TwoWay}"/>
 				</Panel>
 				<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
-					<TextBlock Text="{Binding Filename, Mode=TwoWay}" Width="700" Height="60" Classes="NameFile"></TextBlock>
+					<TextBlock Text="{Binding Filename, Converter={StaticResource filenameConverter}}" Width="700" Height="60" Classes="NameFile"></TextBlock>
 					<Button Command="{Binding OnClickCommand}" Classes="ReadFile">Read File</Button>
 				</StackPanel>
 			</Grid>

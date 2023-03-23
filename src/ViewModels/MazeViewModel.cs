@@ -22,11 +22,12 @@ namespace Tubes2_Ckptw.ViewModels
     {
         private FileReader fileReader;
         private BFS bfs;
+        private DFS dfs;
 
         public MazeView mazeView;
 
         public MazeViewModel() {
-            fileReader = new FileReader("map1.txt");
+            fileReader = new FileReader();
             this.MazeableProp = new MazeProp();
             //bfs = new BFS();
 

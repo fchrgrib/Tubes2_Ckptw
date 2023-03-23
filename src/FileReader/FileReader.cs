@@ -24,8 +24,12 @@ namespace Tubes2_Ckptw.Utility
 
         public char[,] getMapMaze()
         {
-            //Debug.Write(nameFile + "<");
             string mapBefSplit = "";
+
+            if(string.Compare(this.nameFile, string.Empty) == 0)
+            {
+                return new char[0,0];
+            }
 
             try
             {

@@ -203,4 +203,32 @@ namespace Tubes2_Ckptw.Views
             throw new NotSupportedException();
         }
     }
+
+    public class SelectedFileNameConverter : IValueConverter
+    {
+        public static readonly SelectedFileNameConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            if (value is string filename && targetType.IsAssignableTo(typeof(string)))
+            {
+                if (string.Compare(filename, string.Empty) == 0)
+                {
+                    return "No Maze File currently Read.";
+                }
+                else
+                {
+                    return filename;
+                }
+            }
+
+            return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
+        }
+    }
 }
