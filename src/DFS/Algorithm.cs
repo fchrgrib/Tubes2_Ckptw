@@ -27,6 +27,8 @@ namespace Tubes2_Ckptw.src.DFS
                 Debug.WriteLine(movement[i]);
             }
         }
+        private Stopwatch sw = new Stopwatch();
+        private int sizeStep;
         private char[,] mapMaze;
         private int row;
         private int col;
@@ -52,6 +54,8 @@ namespace Tubes2_Ckptw.src.DFS
 
         public List<char> getMovementTreasure()
         {
+            sw.Reset();
+            sw.Start();
             List<char> list = new List<char>();
             List<Tuple<int, int>> direction = getDirectionTreasure();
 
@@ -62,10 +66,14 @@ namespace Tubes2_Ckptw.src.DFS
                 if (direction[i + 1].Item2 - direction[i].Item2 == 1) list.Add('R');
                 if (direction[i + 1].Item2 - direction[i].Item2 == -1) list.Add('L');
             }
+            sw.Stop();
+            this.sizeStep = list.Count;
             return list;
         }
         public List<char> getMovementTSP()
         {
+            sw.Reset();
+            sw.Start();
             List<char> list = new List<char>();
             List<Tuple<int, int>> direction = getDirectionTSP();
 
@@ -76,8 +84,19 @@ namespace Tubes2_Ckptw.src.DFS
                 if (direction[i + 1].Item2 - direction[i].Item2 == 1) list.Add('R');
                 if (direction[i + 1].Item2 - direction[i].Item2 == -1) list.Add('L');
             }
+            sw.Stop();
+            this.sizeStep = list.Count;
             return list;
         }
+        public string getTimeExec()
+        {
+            return this.sw.ElapsedMilliseconds.ToString();
+        }
+        public int getStep()
+        {
+            return this.sizeStep;
+        }
+
         private List<Tuple<int,int>> getDirectionTreasure()
         {
             List<Tuple<int, int>> direction = new List<Tuple<int, int>>();
@@ -312,7 +331,6 @@ namespace Tubes2_Ckptw.src.DFS
 
             return itIs;
         }
-
 
     }
 }
