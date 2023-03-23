@@ -30,8 +30,8 @@ namespace Tubes2_Ckptw.Models
         }
         public Maze(char[,] _maze)
         {
-            Width = _maze.GetLength(0);
-            Height = _maze.GetLength(1);
+            Width = _maze.GetLength(1);     // j
+            Height = _maze.GetLength(0);    // i
 
             path = new MazePath[Width, Height];
 

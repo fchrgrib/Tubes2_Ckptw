@@ -42,7 +42,7 @@ namespace Tubes2_Ckptw.Utility
             }
 
             string[] splitFirst = mapBefSplit.Split('\n');
-            char[,] result = new char[splitFirst[0].Split(" ").Length, splitFirst.Length];
+            char[,] result = new char[splitFirst.Length, splitFirst[0].Split(" ").Length];
 
             for (int j = 0; j < splitFirst.Length; j++)
             {
@@ -51,12 +51,11 @@ namespace Tubes2_Ckptw.Utility
                 {
                     try
                     {
-                        result[i, j] = temp[i].ToCharArray()[0];
+                        result[j, i] = temp[i].ToCharArray()[0];
                     }
                     catch (IndexOutOfRangeException e) { }
                 }
             }
-
 
             return result;
         }
