@@ -38,16 +38,16 @@ namespace Tubes2_Ckptw.Algorithm
         private Stack<Tuple<int, int>> stackDefault = new Stack<Tuple<int,int>>();
 
 
-        public DFS(char[,] mapMaze) { 
+        public DFS(char[,] mapMaze)
+        {
             this.mapMaze = mapMaze;
             this.row = mapMaze.GetLength(0);
             this.col = mapMaze.GetLength(1);
 
-            for(int i = 0; i < this.row; i++)
+            for (int i = 0; i < this.row; i++)
             {
-                for(int j = 0; j < this.col; j++)
+                for (int j = 0; j < this.col; j++)
                 {
-                    if (this.mapMaze[i, j] == 'K') this.stack.Push(new Tuple<int, int>(i, j));
                     if (this.mapMaze[i, j] == 'T') this.treasure++;
                 }
             }
@@ -64,7 +64,7 @@ namespace Tubes2_Ckptw.Algorithm
             List<char> list = new List<char>();
             List<Tuple<int, int>> direction = getDirectionTreasure();
 
-            for(int i = 0; i < direction.Count - 1; i++)
+            for (int i = 0; i < direction.Count - 1; i++)
             {
                 if (direction[i + 1].Item1 - direction[i].Item1 == 1) list.Add('D');
                 if (direction[i + 1].Item1 - direction[i].Item1 == -1) list.Add('U');
@@ -103,17 +103,27 @@ namespace Tubes2_Ckptw.Algorithm
         {
             return this.sizeStep;
         }
-
-        private List<Tuple<int,int>> getDirectionTreasure()
+        public int getNode()
         {
+            return this.lengthNode;
+        }
+
+        private List<Tuple<int, int>> getDirectionTreasure()
+        {
+            for (int i = 0; i < this.row; i++)
+            {
+                for (int j = 0; j < this.col; j++)
+                {
+                    if (this.mapMaze[i, j] == 'K') this.stack.Push(new Tuple<int, int>(i, j));
+                }
+            }
             List<Tuple<int, int>> direction = new List<Tuple<int, int>>();
-            Tuple<int, int> currentDir=this.stack.Pop(); // TODO : make this pop different stack; otherwise error will occur if user tries to visualize twice on the same map without re-loading maze
-            Tuple<int, int> prevDir= new Tuple<int, int>(-1,-1) ;
+            Tuple<int, int> currentDir = this.stack.Pop();
+            Tuple<int, int> prevDir = new Tuple<int, int>(-1, -1);
             direction.Add(currentDir);
             this.liveNode.Add(currentDir);
             this.lengthNode = 0;
 
-            
 
             while (this.treasure > 0)
             {
@@ -123,7 +133,7 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1-1,currentDir.Item2))&&
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2)) &&
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
                     {
@@ -138,8 +148,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') &&(
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1+1,currentDir.Item2)) &&
+                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') && (
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2)) &&
                         this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
                         )
                     {
@@ -153,9 +163,9 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') &&(
-                        isLiveNode(new Tuple<int, int>(currentDir.Item1,currentDir.Item2-1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2-1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') && (
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1)) &&
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -168,8 +178,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') &&(
-                        isLiveNode(new Tuple<int,int>(currentDir.Item1,currentDir.Item2+1)) &&
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') && (
+                        isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1)) &&
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
                     {
@@ -187,24 +197,31 @@ namespace Tubes2_Ckptw.Algorithm
 
 
                 currentDir = this.stack.Pop();
-                
+
                 if (this.mapMaze[currentDir.Item1, currentDir.Item2] == 'T') this.treasure--;
 
                 if (check == 0)
                 {
                     int lebi = Math.Abs(Math.Abs(currentDir.Item1 - prevDir.Item1) - Math.Abs(currentDir.Item2 - prevDir.Item2));
-                    int jumlah = direction[direction.Count-1].Item1 + direction[direction.Count-1].Item2-(lebi);
+                    int jumlah = direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2 - (lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
-                   
 
 
-                        for (int i = 0; i < Math.Abs(calculate); i++)
-                        {
-                            direction.RemoveAt(direction.Count - 1);
-                        }
-                    
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1-1, direction[direction.Count - 1].Item2-1);
+
+                    //for (int i = 0; i < Math.Abs(calculate); i++)
+                    //{
+                    //    direction.RemoveAt(direction.Count - 1);
+                    //}
+                    while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
+                        direction[direction.Count - 1].Item2 != currentDir.Item2 ||
+                        ((Math.Abs(direction[direction.Count - 1].Item1 - currentDir.Item1) + Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2)) != 1
+                        ))
+                    {
+                        direction.RemoveAt(direction.Count - 1);
+                    }
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
                 }
+
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
 
@@ -215,14 +232,14 @@ namespace Tubes2_Ckptw.Algorithm
             return direction;
         }
 
-        private List<Tuple<int,int>> getDirectionTSP()
+        private List<Tuple<int, int>> getDirectionTSP()
         {
             List<Tuple<int, int>> direction = getDirectionTreasure();
-            Tuple<int, int> currentDir = direction[direction.Count-1];
+            Tuple<int, int> currentDir = direction[direction.Count - 1];
             Tuple<int, int> prevDir = new Tuple<int, int>(-1, -1);
             this.liveNode.Add(currentDir);
             this.stack.Push(currentDir);
-            this.lengthNode = direction.Count; 
+            this.lengthNode = direction.Count;
 
             int start = 1;
 
@@ -235,7 +252,7 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R'||
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R' ||
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2)) &&
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
@@ -269,9 +286,9 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2-1] == 'K') && (
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1)) &&
-                        this.mapMaze[currentDir.Item1, currentDir.Item2-1] != 'X')
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
                         )
                     {
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1));
@@ -285,12 +302,11 @@ namespace Tubes2_Ckptw.Algorithm
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2+1] == 'K') && (
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1)) &&
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
                     {
-
                         this.stack.Push(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1));
                         check = 1;
                     }
@@ -313,13 +329,20 @@ namespace Tubes2_Ckptw.Algorithm
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
 
 
-
-                    for (int i = 0; i < Math.Abs(calculate); i++)
+                    //Debug.WriteLine("check");
+                    //Debug.WriteLine(direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2);
+                    //Debug.WriteLine(jumlah);
+                    //Debug.WriteLine(calculate);
+                    //for(int i=0;i<direction.Count;i++) Debug.WriteLine(direction[i]);
+                    while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
+                        direction[direction.Count - 1].Item2 != currentDir.Item2 ||
+                        ((Math.Abs(direction[direction.Count - 1].Item1 - currentDir.Item1) + Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2)) != 1
+                        ))
                     {
                         direction.RemoveAt(direction.Count - 1);
                     }
+                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1, direction[direction.Count - 1].Item2);
 
-                    prevDir = new Tuple<int, int>(direction[direction.Count - 1].Item1 - 1, direction[direction.Count - 1].Item2 - 1);
                 }
                 direction.Add(currentDir);
                 this.liveNode.Add(currentDir);
@@ -331,11 +354,11 @@ namespace Tubes2_Ckptw.Algorithm
             return direction;
         }
 
-        private bool isLiveNode(Tuple<int,int> sample)
+        private bool isLiveNode(Tuple<int, int> sample)
         {
             bool itIs = true;
 
-            for(int i = 0; i < this.liveNode.Count; i++)
+            for (int i = 0; i < this.liveNode.Count; i++)
             {
                 if (sample.Item1 == this.liveNode[i].Item1 && sample.Item2 == this.liveNode[i].Item2) itIs = false;
             }
