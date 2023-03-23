@@ -23,6 +23,9 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 	<Control.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center"></Setter>
+		</Style>
 		<Style Selector=":is(TextBlock)">
 			<Setter Property="Foreground" Value="White"></Setter>
 			<Setter Property="FontFamily" Value="Arial"></Setter>
@@ -70,9 +73,14 @@
 					<Setter Property="Background" Value="#2e2e2e"></Setter>
 					<Setter Property="VerticalAlignment" Value="Center"></Setter>
 				</Style>
-		<Style Selector="StackPanel.RightPanel">
+		<Style Selector="Grid.RightPanel">
 			<Setter Property="Background" Value="#1b1b1b"></Setter>
 		</Style>
+			<Style Selector="Border.RightPanel_Desc">
+				<Setter Property="Background" Value="#242424"></Setter>
+				<Setter Property="CornerRadius" Value="13"></Setter>
+				<Setter Property="Padding" Value="10"></Setter>
+			</Style>
 	</Control.Styles>
 	<Control.Resources>
 		<local:IsSelectingBFSConverter x:Key="bfsConverter"/>
@@ -109,9 +117,29 @@
 					</Grid>	
 				</Panel>
 			</Panel>
-			<StackPanel Grid.Column="1" Grid.Row="0" Classes="RightPanel">
-				<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}" Background="Red"></TextBlock>
-			</StackPanel>
+			<Grid Grid.Column="1" Grid.Row="0" Classes="RightPanel" ColumnDefinitions="1*, 8.5*, 1*" RowDefinitions="2*, 1*, 3*, 1*, .8*, 1*, .8*, 1*, .8*, 11*">
+				<TextBlock Grid.Column="1" Grid.Row="1">Route</TextBlock>
+				<Border Classes="RightPanel_Desc" Grid.Column="1" Grid.Row="2">
+					<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}" VerticalAlignment="Top"></TextBlock>	
+				</Border>
+				<TextBlock Grid.Column="1" Grid.Row="3">Steps</TextBlock>
+				<Grid ColumnDefinitions="1*, 1*" RowDefinitions="1*" Grid.Column="1" Grid.Row="4">
+					<Border Classes="RightPanel_Desc" Grid.Column="0" Grid.Row="0">
+							<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>		
+					</Border>
+				</Grid>
+				<TextBlock Grid.Column="1" Grid.Row="5">Nodes</TextBlock>
+				<Grid ColumnDefinitions="1*, 1*" RowDefinitions="1*" Grid.Column="1" Grid.Row="6">
+					<Border Classes="RightPanel_Desc" Grid.Column="0" Grid.Row="0">
+							<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>		
+					</Border>
+				</Grid>					
+				<TextBlock Grid.Column="1" Grid.Row="7">Execution Time</TextBlock>
+				<Border Classes="RightPanel_Desc" Grid.Column="1" Grid.Row="8">
+					<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}"></TextBlock>	
+				</Border>
+			
+			</Grid>
 		</Grid>
 		
 		
