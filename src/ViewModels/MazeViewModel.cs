@@ -50,7 +50,7 @@ namespace Tubes2_Ckptw.ViewModels
         private void updateMazePath()
         {
             this.Mazeable = new Maze(fileReader.getMapMaze());
-            //this.bfs = new BFS(fileReader.getMapMaze());
+            this.bfs = new BFS(fileReader.getMapMaze());
             this.dfs = new DFS(fileReader.getMapMaze());
 
 
@@ -135,14 +135,15 @@ namespace Tubes2_Ckptw.ViewModels
 
             if (isUsingTSP)
             {
-                if(isSelectingBFS) { }
+                if(isSelectingBFS) {
+                }
                 else {
                     this.SolutionPath = this.dfs.getMovementTSP();
                 }
             } else
             {
-                if (isSelectingBFS) { 
-                    
+                if (isSelectingBFS) {
+                    this.SolutionPath = this.bfs.solve();
                 }
                 else {
                     this.SolutionPath = this.dfs.getMovementTreasure();
