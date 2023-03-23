@@ -13,6 +13,7 @@ using Tubes2_Ckptw.ViewModels;
 using System.Reactive.Subjects;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
+using System.Globalization;
 
 namespace Tubes2_Ckptw.Views
 {
@@ -172,6 +173,34 @@ namespace Tubes2_Ckptw.Views
 
             //Debug.WriteLine("ganti si!");
             //this.maze.Print();
+        }
+    }
+
+    public class IsSelectingBFSConverter : IValueConverter
+    {
+        public static readonly IsSelectingBFSConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            if (value is bool isBFS && targetType.IsAssignableTo(typeof(string)))
+            {
+                if (isBFS)
+                {
+                    return "BFS";
+                }
+                else
+                {
+                    return "DFS";
+                }
+            }
+
+            return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
         }
     }
 }
