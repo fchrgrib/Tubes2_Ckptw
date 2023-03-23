@@ -67,9 +67,17 @@ namespace Tubes2_Ckptw.Views
             mazeGrid.Children.Clear();
             mazeGrid.RowDefinitions.Clear();
             mazeGrid.ColumnDefinitions.Clear();
-            
+
             double  maxVertical = 630,
                     maxHorizontal = 1150;
+
+            if((DataContext as MazeViewModel).currentScreens != null)
+            {
+                maxVertical   = ((DataContext as MazeViewModel).currentScreens.Primary.WorkingArea.Height * 7 / 10 - 80) /
+                                (DataContext as MazeViewModel).currentScreens.Primary.PixelDensity;
+                maxHorizontal = ((DataContext as MazeViewModel).currentScreens.Primary.WorkingArea.Width * 4 / 6.2 - 80)/
+                                (DataContext as MazeViewModel).currentScreens.Primary.PixelDensity;
+            }
 
             double  desiredGridHeight = maxVertical / this.MazeProp.Maze.Height,
                     desiredGridWidth = maxHorizontal / this.MazeProp.Maze.Width;

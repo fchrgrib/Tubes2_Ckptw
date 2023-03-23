@@ -12,7 +12,11 @@ namespace Tubes2_Ckptw.Utility
     internal class FileReader
     {
         private string nameFile;
-        public string getNameFile => nameFile;
+        public string getNameFile => 
+            string.Compare(nameFile, string.Empty) != 0 ?  
+                Path.GetFullPath(nameFile) 
+                : 
+                nameFile;
         public FileReader()
         {
             nameFile = "";
