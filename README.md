@@ -65,11 +65,9 @@ Untuk membangun dan menjalankan program ini diperlukan proses berikut
 ![image](https://user-images.githubusercontent.com/89321009/227572883-86e86c54-a061-44aa-9336-eb48f2c820fe.png)
 
 6. untuk memecahkan maze treasure kita dapat memilih toggle DFS dan BFS dan bisa memilih ingin menggunakan TSP atau tidak
-
-7. jika sudah memilih tekan tombol Visualize
-
 ![image](https://user-images.githubusercontent.com/89321009/227573340-b6b1785c-f978-4ae5-b48a-24bf5385d42f.png)
 
+7. jika sudah memilih tekan tombol Visualize
 
 8. Contoh program jika sudah ditekan tombol visualize
 ![image](https://user-images.githubusercontent.com/89321009/227573521-8677f647-5c7e-413b-a529-0c79c332278e.png)
