@@ -17,13 +17,33 @@ namespace Tubes2_Ckptw.Utility
                 Path.GetFullPath(nameFile) 
                 : 
                 nameFile;
+
+        private string testFolderPath;
+
         public FileReader()
         {
             nameFile = "";
+
+
+            if (Directory.Exists("../../../test/")){
+                testFolderPath = Path.GetFullPath("../../../test/");
+            } else
+            {
+                testFolderPath = Path.GetFullPath("./");
+            }
+
         }
         public FileReader(string nameFile)
         {
             this.nameFile = nameFile;
+
+            if (Directory.Exists("../../../test/")){
+                testFolderPath = Path.GetFullPath("../../../test/");
+            }
+            else
+            {
+                testFolderPath = Path.GetFullPath("./");
+            }
         }
 
         public char[,] getMapMaze()
@@ -37,8 +57,7 @@ namespace Tubes2_Ckptw.Utility
 
             try
             {
-                // TODO: make this empty
-                mapBefSplit = File.ReadAllText( "../../../test/" + this.nameFile);
+                mapBefSplit = File.ReadAllText(Path.Combine(testFolderPath, this.nameFile));
             }
             catch (FileNotFoundException e)
             {
@@ -69,7 +88,7 @@ namespace Tubes2_Ckptw.Utility
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.AllowMultiple = false;
             fileDialog.Title = "Buka Maze";
-            fileDialog.Directory = Path.GetFullPath("../../../test");
+            fileDialog.Directory = testFolderPath;
             fileDialog.Filters.Add(new FileDialogFilter() { Extensions = { "txt" } });
 
             string[]? result = await fileDialog.ShowAsync(new Window());

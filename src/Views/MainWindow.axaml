@@ -11,8 +11,8 @@
         x:Class="Tubes2_Ckptw.Views.MainWindow"
 		xmlns:local="using:Tubes2_Ckptw.Views"
 		xmlns:mz="using:Tubes2_Ckptw.Utility"
-        Icon="/src/Assets/avalonia-logo.ico"
-        Title="Tubes2_Ckptw">
+        Icon="/src/Assets/icon.ico"
+        Title="Ckptw Maze Solver">
 	<!--TransparencyLevelHint="AcrylicBlur"
 	Background="Transparent"-->
 	
