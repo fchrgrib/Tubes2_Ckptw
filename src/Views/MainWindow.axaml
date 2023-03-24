@@ -45,15 +45,34 @@
 				<Setter Property="FontWeight" Value="Thin"></Setter>
 			</Style>
 		
-		<Style Selector="StackPanel.LeftPanel">
+		<Style Selector="Grid.LeftPanel">
 			<Setter Property="Background" Value="#1b1b1b"></Setter>
 		</Style>
-			<Style Selector="StackPanel.LeftWrapper">
-				<Setter Property="Margin" Value="25"></Setter>
-			</Style>
+				<Style Selector="Button#_VisSwitch">
+					<Style.Animations>
+						<Animation Duration="0:0:1">
+							<KeyFrame Cue="0%">
+								<Setter Property="Opacity" Value="0.0"/>
+							</KeyFrame>
+							<KeyFrame Cue="100%">
+								<Setter Property="Opacity" Value="1.0"/>
+							</KeyFrame>
+						</Animation>
+					</Style.Animations>
+				</Style>
 				<Style Selector="Button.VisualizeMaze">
-					<Setter Property="Width" Value="85">
-					</Setter>
+					<Setter Property="Width" Value="110"></Setter>
+					<Setter Property="Height" Value="40"></Setter>
+					
+					<Setter Property="HorizontalAlignment" Value="Center"></Setter>
+					<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+					<Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+					
+					<Setter Property="CornerRadius" Value="30"></Setter>
+					<Setter Property="Background" Value="#37456B"></Setter>
+				</Style>
+				<Style Selector="Button.VisualizeMaze:pointerover /template/ ContentPresenter">
+					<Setter Property="Background" Value="#2e2e2e"></Setter>
 				</Style>
 		<Style Selector="Panel.MainPanel">
 			<Setter Property="Background" Value="#202020"></Setter>
@@ -87,17 +106,25 @@
 		<local:SelectedFileNameConverter x:Key="filenameConverter"/>
 		<local:StepDelayConverter x:Key="stepDelayConverter"/>
 		<local:PathTraceConverter x:Key="pathTraceConverter"/>
+		<local:TSPConverter x:Key="tspConverter"/>
 	</Control.Resources>
 
 	<Grid ColumnDefinitions="1*, 5.2*" RowDefinitions="1*">
-		<StackPanel Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
-			<StackPanel Classes="LeftWrapper">
-				<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
-				<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
-				<ToggleButton IsChecked="{Binding IsUsingTSP}">TSP</ToggleButton>
-				<Button Classes="VisualizeMaze" Command="{Binding Visualize}">Visualize!</Button>
-			</StackPanel>
-		</StackPanel>
+		<Grid ColumnDefinitions="1*, 5*, 1*" RowDefinitions="3*, .8*, .8*, 0.4*, 1*, 0.1*, 1*, 1.3*, 2*, 13*" Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
+			<RadioButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
+			<RadioButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
+			<TextBlock Grid.Column="1" Grid.Row="4" Text="TSP" FontSize="20" Background="Transparent" VerticalAlignment="Bottom"></TextBlock>
+			<!--<Border Grid.Column="1" Grid.Row="6" Width="150" Height="40" CornerRadius="40" Background="#AEAEAE">
+				<Border Name="_VisSwitch" Width="80" Height="40" CornerRadius="40" Background="#37456B" HorizontalAlignment="Center">
+					<TextBlock Text="ON" FontSize="20" Background="Transparent" HorizontalAlignment="Center"></TextBlock>
+				</Border>
+			</Border>-->
+			<ToggleButton Grid.Column="1" Grid.Row="6" IsChecked="{Binding IsUsingTSP}" Width="120" Height="40" CornerRadius="40"
+						  VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<TextBlock Text="{Binding IsUsingTSP, Converter={StaticResource tspConverter}}" Foreground="White"></TextBlock>
+			</ToggleButton>
+			<Button Grid.Column="1" Grid.Row="8" Classes="VisualizeMaze" Command="{Binding Visualize}">Visualize!</Button>
+		</Grid>
 		<Grid ColumnDefinitions="4*, 1.2*" RowDefinitions="1*" Grid.Column="1" Grid.Row="0">
 			<Panel Grid.Column="0" Grid.Row="0" Classes="MainPanel">
 				<Panel Classes="MainPanel_Margin">

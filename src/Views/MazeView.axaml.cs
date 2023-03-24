@@ -257,6 +257,32 @@ namespace Tubes2_Ckptw.Views
         }
     }
 
+    public class TSPConverter : IValueConverter
+    {
+        public static readonly TSPConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            if (value is bool isTSP && targetType.IsAssignableTo(typeof(string)))
+            {
+                if (isTSP)
+                {
+                    return "ON";
+                }
+
+                return "OFF";
+            }
+
+            return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
+        }
+    }
+
     public class PathTraceConverter : IValueConverter
     {
         public static readonly PathTraceConverter Instance = new();
