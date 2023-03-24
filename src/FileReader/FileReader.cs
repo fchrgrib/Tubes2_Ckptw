@@ -14,7 +14,7 @@ namespace Tubes2_Ckptw.Utility
         private string nameFile;
         public string getNameFile => 
             string.Compare(nameFile, string.Empty) != 0 ?  
-                Path.GetFullPath(nameFile) 
+                Path.GetFullPath(Path.Combine(testFolderPath, nameFile)) 
                 : 
                 nameFile;
 
