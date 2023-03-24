@@ -137,6 +137,14 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref solutionStepDelay, value);
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set => this.RaiseAndSetIfChanged(ref errorMessage, value);
+        }
+        
+
         public async void OnClickCommand()
         {
             if(this.Mazeable != null)
@@ -150,10 +158,20 @@ namespace Tubes2_Ckptw.ViewModels
         public async void Visualize()
         {
             if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
+            {
+                this.ErrorMessage = "Maze Empty";
                 return;
+            }
+                
 
             if (!this.Mazeable.IsMazeValid())
+            {
+                this.ErrorMessage = "Maze is Not Valid";
                 return;
+            }
+
+            this.ErrorMessage = string.Empty;
+                
 
             updateMazePath();
 

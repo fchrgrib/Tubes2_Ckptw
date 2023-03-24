@@ -110,7 +110,7 @@
 	</Control.Resources>
 
 	<Grid ColumnDefinitions="1*, 5.2*" RowDefinitions="1*">
-		<Grid ColumnDefinitions="1*, 5*, 1*" RowDefinitions="3*, .8*, .8*, 0.4*, 1*, 0.1*, 1*, 1.3*, 2*, 13*" Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
+		<Grid ColumnDefinitions="1*, 5*, 1*" RowDefinitions="3*, .8*, .8*, 0.4*, 1*, 0.1*, 1*, 1.3*, 2*, .5*, 12.5*" Grid.Column="0" Grid.Row="0" Classes="LeftPanel">
 			<RadioButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
 			<RadioButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
 			<TextBlock Grid.Column="1" Grid.Row="4" Text="TSP" FontSize="20" Background="Transparent" VerticalAlignment="Bottom"></TextBlock>
@@ -124,6 +124,8 @@
 				<TextBlock Text="{Binding IsUsingTSP, Converter={StaticResource tspConverter}}" Foreground="White"></TextBlock>
 			</ToggleButton>
 			<Button Grid.Column="1" Grid.Row="8" Classes="VisualizeMaze" Command="{Binding Visualize}">Visualize!</Button>
+			<TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding ErrorMessage}" 
+					   Foreground="White" FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
 		</Grid>
 		<Grid ColumnDefinitions="4*, 1.2*" RowDefinitions="1*" Grid.Column="1" Grid.Row="0">
 			<Panel Grid.Column="0" Grid.Row="0" Classes="MainPanel">
