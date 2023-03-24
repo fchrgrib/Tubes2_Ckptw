@@ -147,9 +147,12 @@ namespace Tubes2_Ckptw.ViewModels
             updateMazePath();
         }
 
-        public async void UpdateMazePathState()
+        public async void Visualize()
         {
             if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
+                return;
+
+            if (!this.Mazeable.IsMazeValid())
                 return;
 
             updateMazePath();

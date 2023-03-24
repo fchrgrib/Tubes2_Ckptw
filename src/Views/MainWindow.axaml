@@ -95,7 +95,7 @@
 				<RadioButton IsChecked="{Binding IsSelectingBFS}">BFS</RadioButton>
 				<RadioButton IsChecked="{Binding !IsSelectingBFS}">DFS</RadioButton>
 				<ToggleButton IsChecked="{Binding IsUsingTSP}">TSP</ToggleButton>
-				<Button Classes="VisualizeMaze" Command="{Binding UpdateMazePathState}">Visualize!</Button>
+				<Button Classes="VisualizeMaze" Command="{Binding Visualize}">Visualize!</Button>
 			</StackPanel>
 		</StackPanel>
 		<Grid ColumnDefinitions="4*, 1.2*" RowDefinitions="1*" Grid.Column="1" Grid.Row="0">

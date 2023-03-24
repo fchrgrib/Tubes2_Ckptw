@@ -63,13 +63,18 @@ namespace Tubes2_Ckptw.Models
             }
         }
 
-        public void UpdateSolutionState(List<char> mazeSolution)
+        public bool IsMazeValid()
         {
             if(getKrustyCount() != 1)
-            {
-                Debug.WriteLine("WARNING : THERE ARE MORE THAN ONE START POINT! ERROR MAY OCCUR!");
-            }
+                return false;
+            if(getUndefinedPath() > 0)
+                return false;
 
+            return true;
+        }
+
+        public void UpdateSolutionState(List<char> mazeSolution)
+        {
             int[] selectedPoint = getStartPoint();
 
             getMazePath(selectedPoint).PathState = MazePath.pathState.Travelled;
@@ -102,11 +107,6 @@ namespace Tubes2_Ckptw.Models
 
         public void AnimateSolutionState(List<char> mazeSolution)
         {
-            if (getKrustyCount() != 1)
-            {
-                Debug.WriteLine("WARNING : THERE ARE MORE THAN ONE START POINT! ERROR MAY OCCUR!");
-            }
-
             int internalCount = 0;
             int[] selectedPoint = getStartPoint();
 
@@ -188,6 +188,18 @@ namespace Tubes2_Ckptw.Models
             foreach(var path in MazePaths)
             {
                 if (path.PathSymbol == MazePath.pathSymbol.KrustyKrab)
+                    count++;
+            }
+
+            return count;
+        }
+
+        private int getUndefinedPath()
+        {
+            int count = 0;
+            foreach (var path in MazePaths)
+            {
+                if (path.PathSymbol == MazePath.pathSymbol.Undefined)
                     count++;
             }
 
