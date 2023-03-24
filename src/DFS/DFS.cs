@@ -198,6 +198,7 @@ namespace Tubes2_Ckptw.Algorithm
                     if (!isTreasureLive(currentDir))
                     {
                         this.treasure--;
+                        this.lengthNode += this.liveNode.Count;
                         this.liveNode.Clear();
                         this.liveTreasure.Add(currentDir);
                     }
@@ -229,7 +230,6 @@ namespace Tubes2_Ckptw.Algorithm
                 this.liveNode.Add(currentDir);
 
             }
-            this.lengthNode = this.liveNode.Count;
             this.stack.Clear();
             this.liveNode.Clear();
             return direction;
