@@ -13,9 +13,12 @@ namespace Tubes2_Ckptw.Models
         {
             Undefined,
 
-            untravelled,
-            travelled,
-            backtracked
+            Untravelled,
+            Travelled,
+            Backtracked,
+
+            Searched,
+            beingSearched
         }
 
         public enum pathSymbol
@@ -40,13 +43,13 @@ namespace Tubes2_Ckptw.Models
 
         public MazePath(pathSymbol _pathSymbol)
         {
-            PathState = pathState.untravelled;
+            PathState = pathState.Untravelled;
             PathSymbol = _pathSymbol;
         }
 
         public MazePath(char _char)
         {
-            PathState = pathState.untravelled;
+            PathState = pathState.Untravelled;
 
             switch (_char)
             {

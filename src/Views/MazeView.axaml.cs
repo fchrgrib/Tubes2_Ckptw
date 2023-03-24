@@ -7,10 +7,7 @@ using Tubes2_Ckptw.Models;
 using Avalonia.Media;
 using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Reactive.Linq;
 using Tubes2_Ckptw.ViewModels;
-using System.Reactive.Subjects;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 using System.Globalization;
@@ -132,15 +129,26 @@ namespace Tubes2_Ckptw.Views
 
 
                     //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
-
-                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.travelled ?
-                        Brushes.Green
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched
+                        || this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.beingSearched ?
+                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched ?
+                            new SolidColorBrush(Color.Parse("#8E895C"))
+                            :
+                            new SolidColorBrush(Color.Parse("#393859"))
                         :
-                        ( this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
-                             Brushes.White 
-                             : 
-                             Brushes.Black 
-                        )
+                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Travelled ?
+                            new SolidColorBrush(Color.Parse("#4F734C"))
+                            :
+                            this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Backtracked ?
+                                new SolidColorBrush(Color.Parse("#3B5938"))
+                                :
+                                ( 
+                                    this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
+                                    new SolidColorBrush(Color.Parse("#AEAEAE"))
+                                    : 
+                                    new SolidColorBrush(Color.Parse("#202020")
+                                )
+                            )
                         ;
                     tb.Foreground = Brushes.Black;
 
@@ -273,6 +281,28 @@ namespace Tubes2_Ckptw.Views
             }
 
             return result;
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
+        }
+    }
+
+    public class StepDelayConverter : IValueConverter
+    {
+        public static readonly StepDelayConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+
+            if (value is double stepDelayIn100 && targetType.IsAssignableTo(typeof(string)))
+            {
+                return ((stepDelayIn100 / 100).ToString("F2") + " s");
+            }
+
+            return "NaN";
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

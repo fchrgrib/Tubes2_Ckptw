@@ -14,7 +14,9 @@ using Avalonia.Controls.Chrome;
 using Tubes2_Ckptw.Views;
 using Tubes2_Ckptw.Algorithm;
 using ReactiveUI;
-
+using Avalonia.Threading;
+using Avalonia;
+using System.Threading;
 
 namespace Tubes2_Ckptw.ViewModels
 {
@@ -31,20 +33,8 @@ namespace Tubes2_Ckptw.ViewModels
             fileReader = new FileReader();
 
             this.MazeableProp = new MazeProp();
-            
+            this.SolutionStepDelay = 10;
 
-            //bfs = new BFS();
-
-            //bfs.solve();
-
-            //FileReader dummy = new FileReader("map1.txt");
-            //dfs = new DFS(dummy.getMapMaze());
-            //foreach(var xx in dfs.getMovementTreasure())
-            //{
-            //    Debug.WriteLine(xx);
-            //}
-
-            
             updateMazePath();
         }
 
@@ -67,8 +57,6 @@ namespace Tubes2_Ckptw.ViewModels
 
             if(mazeView != null)
                 mazeView.InitializeMazeGrid();
-
-            //Debug.WriteLine(this.Mazeable.Width + " x " + this.Mazeable.Height);
         }
 
         private ObservableCollection<MazePath>? mazePaths;
@@ -121,41 +109,111 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref solutionPath, value);
         }
 
+        private int solutionSteps;
+        public int SolutionSteps
+        {
+            get => solutionSteps;
+            set => this.RaiseAndSetIfChanged(ref solutionSteps, value);
+        }
+
+        private int solutionNode;
+        public int SolutionNode
+        {
+            get => solutionNode;
+            set => this.RaiseAndSetIfChanged(ref solutionNode, value);
+        }
+
+        private string solutionTimeExec;
+        public string SolutionTimeExec
+        {
+            get => solutionTimeExec;
+            set => this.RaiseAndSetIfChanged(ref solutionTimeExec, value);
+        }
+
+        private double solutionStepDelay;
+        public double SolutionStepDelay
+        {
+            get => solutionStepDelay;
+            set => this.RaiseAndSetIfChanged(ref solutionStepDelay, value);
+        }
 
         public async void OnClickCommand()
         {
+            if(this.Mazeable != null)
+                this.Mazeable.ResetSolutionState();
+
             await fileReader.BrowseFiles();
 
             updateMazePath();
         }
 
-        public void UpdateMazePathState()
+        public async void UpdateMazePathState()
         {
-            if (this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
+            if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
                 return;
 
-            if (isUsingTSP)
+            updateMazePath();
+
+            if (IsUsingTSP)
             {
                 if(isSelectingBFS) {
                     this.SolutionPath = this.bfs.solve(true);
+                    this.SolutionNode = this.bfs.getNode();
+                    this.SolutionSteps = this.bfs.getStep();
+                    this.SolutionTimeExec = this.bfs.getTimeExec() + " ms";
                 }
-                else {
+                else { // DFS
                     this.SolutionPath = this.dfs.getMovementTSP();
+                    this.SolutionNode = this.dfs.getNode();
+                    this.SolutionSteps = this.dfs.getStep();
+                    this.SolutionTimeExec = this.dfs.getTimeExec() + " ms";
                 }
             } else
             {
                 if (isSelectingBFS) {
                     this.SolutionPath = this.bfs.solve(false);
+                    this.SolutionNode = this.bfs.getNode();
+                    this.SolutionSteps = this.bfs.getStep();
+                    this.SolutionTimeExec = this.bfs.getTimeExec() + " ms";
                 }
-                else {
-                    this.SolutionPath = this.dfs.getMovementTreasure();
+                else
+                { // DFS
+                    this.SolutionPath = this.dfs.getMovementTSP();
+                    this.SolutionNode = this.dfs.getNode();
+                    this.SolutionSteps = this.dfs.getStep();
+                    this.SolutionTimeExec = this.dfs.getTimeExec() + " ms";
                 }
             }
 
-            this.mazeable.UpdatePathState(this.solutionPath);
+            for(int i = 0; i <= this.solutionPath.Count; i++)
+            {
+                this.Mazeable.ResetSolutionState();
+                this.Mazeable.AnimateSolutionState(this.solutionPath.GetRange(0, i));
+
+                if (mazeView != null)
+                    mazeView.InitializeMazeGrid();
+
+                await Task.Delay((int)(this.solutionStepDelay * 10)); // StepDelay value is in 0 - 100 range
+            }
+
+            for (int i = 0; i <= this.solutionPath.Count; i++)
+            {
+                this.Mazeable.ResetSolutionState();
+                this.Mazeable.UpdateSolutionState(this.solutionPath.GetRange(0, i));
+
+                if (mazeView != null)
+                    mazeView.InitializeMazeGrid();
+
+                await Task.Delay((int)(50)); // StepDelay value is in 0 - 100 range
+            }
+
+            this.Mazeable.ResetSolutionState();
+            this.Mazeable.UpdateSolutionState(this.SolutionPath);
 
             if (mazeView != null)
                 mazeView.InitializeMazeGrid();
+
+            
         }
     }
 }

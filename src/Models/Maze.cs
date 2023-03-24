@@ -63,7 +63,7 @@ namespace Tubes2_Ckptw.Models
             }
         }
 
-        public void UpdatePathState(List<char> mazeSolution)
+        public void UpdateSolutionState(List<char> mazeSolution)
         {
             if(getKrustyCount() != 1)
             {
@@ -72,7 +72,7 @@ namespace Tubes2_Ckptw.Models
 
             int[] selectedPoint = getStartPoint();
 
-            getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+            getMazePath(selectedPoint).PathState = MazePath.pathState.Travelled;
 
             foreach(char c in mazeSolution)
             {
@@ -92,7 +92,66 @@ namespace Tubes2_Ckptw.Models
                         break;
                 }
 
-                getMazePath(selectedPoint).PathState = MazePath.pathState.travelled;
+                getMazePath(selectedPoint).PathState =
+                    getMazePath(selectedPoint).PathState == MazePath.pathState.Travelled || getMazePath(selectedPoint).PathState == MazePath.pathState.Backtracked ?
+                        MazePath.pathState.Backtracked
+                        :
+                        MazePath.pathState.Travelled;
+            }
+        }
+
+        public void AnimateSolutionState(List<char> mazeSolution)
+        {
+            if (getKrustyCount() != 1)
+            {
+                Debug.WriteLine("WARNING : THERE ARE MORE THAN ONE START POINT! ERROR MAY OCCUR!");
+            }
+
+            int internalCount = 0;
+            int[] selectedPoint = getStartPoint();
+
+            if(mazeSolution.Count == 0)
+            {
+                getMazePath(selectedPoint).PathState = MazePath.pathState.beingSearched;
+            } else
+            {
+                getMazePath(selectedPoint).PathState = MazePath.pathState.Searched;
+            }
+            
+
+            foreach (char c in mazeSolution)
+            {
+                internalCount++;
+
+                switch (c)
+                {
+                    case 'L':
+                        selectedPoint[1]--;
+                        break;
+                    case 'R':
+                        selectedPoint[1]++;
+                        break;
+                    case 'U':
+                        selectedPoint[0]--;
+                        break;
+                    case 'D':
+                        selectedPoint[0]++;
+                        break;
+                }
+
+                getMazePath(selectedPoint).PathState =
+                    internalCount != mazeSolution.Count ?
+                        MazePath.pathState.Searched
+                        :
+                        MazePath.pathState.beingSearched;                
+            }
+        }
+
+        public void ResetSolutionState()
+        {
+            foreach (var path in MazePaths)
+            {
+                path.PathState = MazePath.pathState.Untravelled;
             }
         }
 
