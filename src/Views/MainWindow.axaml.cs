@@ -15,7 +15,6 @@ namespace Tubes2_Ckptw.Views
         public MainWindow()
         {
             InitializeComponent();
-            //(DataContext as MazeViewModel).currentScreens = Screens;
         }
 
         protected override void OnDataContextEndUpdate()
@@ -24,6 +23,9 @@ namespace Tubes2_Ckptw.Views
 
             // Feeding Maze View with Current Screens
             (this.FindControl<MazeView>("_MazeView").DataContext as MazeViewModel).currentScreens = Screens;
+
+            //Feeding Maze View with This Window
+            (this.FindControl<MazeView>("_MazeView").DataContext as MazeViewModel).window = this;
 
             // Setting Maze Container to have appropriate size
             this.FindControl<Panel>("_MazeContainer").Width = (Screens.Primary.WorkingArea.Width * 4 / 6.2 - 80) / (Screens.Primary.PixelDensity);

@@ -155,6 +155,13 @@ namespace Tubes2_Ckptw.ViewModels
             updateMazePath();
         }
 
+        public Window window;
+
+        public void CloseWindow()
+        {
+            window.Close();
+        }
+
         public async void Visualize()
         {
             if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
@@ -169,7 +176,7 @@ namespace Tubes2_Ckptw.ViewModels
                 this.ErrorMessage = "Maze is Not Valid";
                 return;
             }
-
+            
             this.ErrorMessage = string.Empty;
                 
 

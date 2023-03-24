@@ -148,6 +148,9 @@
 				</Panel>
 			</Panel>
 			<Grid Grid.Column="1" Grid.Row="0" Classes="RightPanel" ColumnDefinitions="1*, 8.5*, 1*" RowDefinitions="2*, 1*, 3*, 1*, .8*, 1*, .8*, 1*, .8*, 1*, .8*, 9.2*">
+				<Grid Grid.Column="1" Grid.Row="0" ColumnDefinitions="1*" RowDefinitions="1.2*, .4*">
+					<Button Grid.Column="0" Grid.Row="0" Content="X" HorizontalAlignment="Right" CornerRadius="100" Background="#242424" Command="{Binding CloseWindow}"></Button>
+				</Grid>
 				<TextBlock Grid.Column="1" Grid.Row="1">Route</TextBlock>
 				<Border Classes="RightPanel_Desc" Grid.Column="1" Grid.Row="2">
 					<TextBlock Text="{Binding SolutionPath, Converter={StaticResource pathTraceConverter}}" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>	
