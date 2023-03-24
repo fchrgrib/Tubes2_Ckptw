@@ -20,8 +20,6 @@ Tidak butuh waktu lama, Ia terpikirkan sebuah solusi yang brilian. Solusi terseb
 mahasiswa yang saat ini sedang berada pada kelas Strategi Algoritma untuk menyelesaikan
 permasalahan ini.
 
-![image](https://user-images.githubusercontent.com/89321009/227563079-08dfb2db-196c-474a-8514-92d54eb0d920.png)
-
 
 ## Strategi BFS dan DFS
 
@@ -49,6 +47,32 @@ Untuk membangun dan menjalankan program ini diperlukan proses berikut
 8. Setelah kembali ke Visual Studio tekan tombol play berwarna hijau di samping tulisan 
    Tubes2_Ckptw
 9. Program akan berjalan sesuai dengan semestinya
+
+## Cara menggunakan program
+
+1. buatlah file dengan format txt terlebih dahulu untuk membuat sebuah map seperti berikut
+
+![image](https://user-images.githubusercontent.com/89321009/227572142-e68d2c73-c465-4ef4-858e-6a29952ae527.png)
+
+2. buka program sesuai dengan arahan pada sub ``Cara menjalankan program``
+
+3. tekan tombol ReadFile untuk membuka map yang sudah dibuat
+![image](https://user-images.githubusercontent.com/89321009/227572580-3b4c422e-2857-4e14-9873-47a6aae4d1bb.png)
+
+4. pilih file txt yang baru saja dibuat
+
+5. program akan menampilkan map seperti ini
+![image](https://user-images.githubusercontent.com/89321009/227572883-86e86c54-a061-44aa-9336-eb48f2c820fe.png)
+
+6. untuk memecahkan maze treasure kita dapat memilih toggle DFS dan BFS dan bisa memilih ingin menggunakan TSP atau tidak
+
+7. jika sudah memilih tekan tombol Visualize
+![image](https://user-images.githubusercontent.com/89321009/227573340-b6b1785c-f978-4ae5-b48a-24bf5385d42f.png)
+
+8. Contoh program jika sudah ditekan tombol visualize
+![image](https://user-images.githubusercontent.com/89321009/227573521-8677f647-5c7e-413b-a529-0c79c332278e.png)
+![image](https://user-images.githubusercontent.com/89321009/227573605-1d17bf64-5a03-4814-bf88-ba5698160c1e.png)
+
 
 ## Author
 ```
