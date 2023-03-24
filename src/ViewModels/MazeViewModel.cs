@@ -14,7 +14,9 @@ using Avalonia.Controls.Chrome;
 using Tubes2_Ckptw.Views;
 using Tubes2_Ckptw.Algorithm;
 using ReactiveUI;
-
+using Avalonia.Threading;
+using Avalonia;
+using System.Threading;
 
 namespace Tubes2_Ckptw.ViewModels
 {
@@ -29,6 +31,8 @@ namespace Tubes2_Ckptw.ViewModels
 
         private bool hadSolved = false;
         private bool lastSolveBFS = false;
+
+        private int internalIndex;
 
         public MazeViewModel() {
             fileReader = new FileReader();
@@ -152,7 +156,7 @@ namespace Tubes2_Ckptw.ViewModels
             this.hadSolved = false;
         }
 
-        public void UpdateMazePathState()
+        public async void UpdateMazePathState()
         {
             if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
                 return;
@@ -188,7 +192,28 @@ namespace Tubes2_Ckptw.ViewModels
                     }
                 }
             }
-            
+
+            for(int i = 0; i <= this.solutionPath.Count; i++)
+            {
+                this.Mazeable.ResetSolutionState();
+                this.Mazeable.AnimateSolutionState(this.solutionPath.GetRange(0, i));
+
+                if (mazeView != null)
+                    mazeView.InitializeMazeGrid();
+
+                await Task.Delay((int)(this.solutionStepDelay * 10)); // StepDelay value is in 0 - 100 range
+            }
+
+            for (int i = 0; i <= this.solutionPath.Count; i++)
+            {
+                this.Mazeable.ResetSolutionState();
+                this.Mazeable.UpdateSolutionState(this.solutionPath.GetRange(0, i));
+
+                if (mazeView != null)
+                    mazeView.InitializeMazeGrid();
+
+                await Task.Delay((int)(50)); // StepDelay value is in 0 - 100 range
+            }
 
             this.Mazeable.ResetSolutionState();
             this.Mazeable.UpdateSolutionState(this.SolutionPath);

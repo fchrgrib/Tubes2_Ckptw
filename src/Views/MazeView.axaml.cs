@@ -7,10 +7,7 @@ using Tubes2_Ckptw.Models;
 using Avalonia.Media;
 using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Reactive.Linq;
 using Tubes2_Ckptw.ViewModels;
-using System.Reactive.Subjects;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 using System.Globalization;
@@ -132,20 +129,26 @@ namespace Tubes2_Ckptw.Views
 
 
                     //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
-
-                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Travelled ?
-                        new SolidColorBrush(Color.Parse("#4F734C"))
-                        :
-                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Backtracked ?
-                            new SolidColorBrush(Color.Parse("#3B5938"))
+                    tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched
+                        || this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.beingSearched ?
+                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched ?
+                            new SolidColorBrush(Color.Parse("#8E895C"))
                             :
-                            ( 
-                                this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
-                                new SolidColorBrush(Color.Parse("#AEAEAE"))
-                                : 
-                                new SolidColorBrush(Color.Parse("#202020")
+                            new SolidColorBrush(Color.Parse("#393859"))
+                        :
+                        this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Travelled ?
+                            new SolidColorBrush(Color.Parse("#4F734C"))
+                            :
+                            this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Backtracked ?
+                                new SolidColorBrush(Color.Parse("#3B5938"))
+                                :
+                                ( 
+                                    this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathSymbol != MazePath.pathSymbol.Unpathable ? 
+                                    new SolidColorBrush(Color.Parse("#AEAEAE"))
+                                    : 
+                                    new SolidColorBrush(Color.Parse("#202020")
+                                )
                             )
-                        )
                         ;
                     tb.Foreground = Brushes.Black;
 

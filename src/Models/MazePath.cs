@@ -15,7 +15,10 @@ namespace Tubes2_Ckptw.Models
 
             Untravelled,
             Travelled,
-            Backtracked
+            Backtracked,
+
+            Searched,
+            beingSearched
         }
 
         public enum pathSymbol
