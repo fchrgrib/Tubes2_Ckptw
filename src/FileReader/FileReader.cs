@@ -107,6 +107,7 @@ namespace Tubes2_Ckptw.Utility
             string res = await result;
 
             this.nameFile = string.Compare(res, string.Empty) != 0 ? Path.GetFileName(res) : this.nameFile;
+            this.testFolderPath = string.Compare(res, string.Empty) != 0 ? Path.GetDirectoryName(res) : this.testFolderPath;
 
             return true;
         }
