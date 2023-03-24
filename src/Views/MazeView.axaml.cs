@@ -286,4 +286,26 @@ namespace Tubes2_Ckptw.Views
             throw new NotSupportedException();
         }
     }
+
+    public class StepDelayConverter : IValueConverter
+    {
+        public static readonly StepDelayConverter Instance = new();
+
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+
+            if (value is double stepDelayIn100 && targetType.IsAssignableTo(typeof(string)))
+            {
+                return ((stepDelayIn100 / 100).ToString("F2") + " s");
+            }
+
+            return "NaN";
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            // may be implemented later
+            throw new NotSupportedException();
+        }
+    }
 }

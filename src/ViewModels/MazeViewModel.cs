@@ -33,7 +33,8 @@ namespace Tubes2_Ckptw.ViewModels
         public MazeViewModel() {
             fileReader = new FileReader();
 
-            this.MazeableProp = new MazeProp();   
+            this.MazeableProp = new MazeProp();
+            this.SolutionStepDelay = 10;
 
             updateMazePath();
         }
@@ -132,7 +133,12 @@ namespace Tubes2_Ckptw.ViewModels
             set => this.RaiseAndSetIfChanged(ref solutionTimeExec, value);
         }
 
-
+        private double solutionStepDelay;
+        public double SolutionStepDelay
+        {
+            get => solutionStepDelay;
+            set => this.RaiseAndSetIfChanged(ref solutionStepDelay, value);
+        }
 
         public async void OnClickCommand()
         {
