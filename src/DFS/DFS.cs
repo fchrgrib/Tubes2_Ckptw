@@ -104,6 +104,7 @@ namespace Tubes2_Ckptw.Algorithm
 
 
 
+
             while (this.treasure > 0)
             {
                 int check = 0;
@@ -111,7 +112,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R') && (
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'R' ||
+                        this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1 - 1, currentDir.Item2)) &&
                         this.mapMaze[currentDir.Item1 - 1, currentDir.Item2] != 'X')
                         )
@@ -127,7 +129,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'T' ||
-                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R') && (
+                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'R' ||
+                        this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1 + 1, currentDir.Item2)) &&
                         this.mapMaze[currentDir.Item1 + 1, currentDir.Item2] != 'X')
                         )
@@ -142,7 +145,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R') && (
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] == 'R' ||
+                        this.mapMaze[currentDir.Item1 , currentDir.Item2-1] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 - 1)) &&
                         this.mapMaze[currentDir.Item1, currentDir.Item2 - 1] != 'X')
                         )
@@ -157,7 +161,8 @@ namespace Tubes2_Ckptw.Algorithm
                 try
                 {
                     if ((this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'T' ||
-                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R') && (
+                        this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] == 'R' ||
+                        this.mapMaze[currentDir.Item1, currentDir.Item2+1] == 'K') && (
                         isLiveNode(new Tuple<int, int>(currentDir.Item1, currentDir.Item2 + 1)) &&
                         this.mapMaze[currentDir.Item1, currentDir.Item2 + 1] != 'X')
                         )
