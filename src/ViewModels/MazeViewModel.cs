@@ -166,30 +166,19 @@ namespace Tubes2_Ckptw.ViewModels
 
             if (!hadSolved)
             {
-                if (isUsingTSP)
-                {
-                    if (isSelectingBFS)
-                    {
-                        //this.SolutionPath = this.bfs.sol
-                    }
-                    else
-                    {
-                        this.SolutionPath = this.dfs.getMovementTSP();
-                    }
+                if(isSelectingBFS) {
+                    this.SolutionPath = this.bfs.solve(true);
                 }
-                else
-                {
-                    if (isSelectingBFS)
-                    {
-                        this.SolutionPath = this.bfs.solve();
-                    }
-                    else
-                    {
-                        this.SolutionPath = this.dfs.getMovementTreasure();
-                        this.SolutionSteps = this.dfs.getStep();
-                        this.SolutionNode =  this.dfs.getNode();
-                        this.SolutionTimeExec = this.dfs.getTimeExec();
-                    }
+                else {
+                    this.SolutionPath = this.dfs.getMovementTSP();
+                }
+            } else
+            {
+                if (isSelectingBFS) {
+                    this.SolutionPath = this.bfs.solve(false);
+                }
+                else {
+                    this.SolutionPath = this.dfs.getMovementTreasure();
                 }
             }
 
