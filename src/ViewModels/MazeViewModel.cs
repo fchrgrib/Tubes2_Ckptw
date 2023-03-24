@@ -29,11 +29,6 @@ namespace Tubes2_Ckptw.ViewModels
         public MazeView mazeView;
         public Screens currentScreens;
 
-        private bool hadSolved = false;
-        private bool lastSolveBFS = false;
-
-        private int internalIndex;
-
         public MazeViewModel() {
             fileReader = new FileReader();
 
@@ -62,8 +57,6 @@ namespace Tubes2_Ckptw.ViewModels
 
             if(mazeView != null)
                 mazeView.InitializeMazeGrid();
-
-            //Debug.WriteLine(this.Mazeable.Width + " x " + this.Mazeable.Height);
         }
 
         private ObservableCollection<MazePath>? mazePaths;
@@ -152,8 +145,6 @@ namespace Tubes2_Ckptw.ViewModels
             await fileReader.BrowseFiles();
 
             updateMazePath();
-
-            this.hadSolved = false;
         }
 
         public async void UpdateMazePathState()
@@ -161,24 +152,36 @@ namespace Tubes2_Ckptw.ViewModels
             if (this.Mazeable == null || this.Mazeable.Width == 0 || this.Mazeable.Height == 0)
                 return;
 
-            if (this.hadSolved && this.lastSolveBFS != this.IsSelectingBFS)
-                this.hadSolved = false;
+            updateMazePath();
 
-            if (!hadSolved)
+            if (IsUsingTSP)
             {
                 if(isSelectingBFS) {
                     this.SolutionPath = this.bfs.solve(true);
+                    this.SolutionNode = this.bfs.getNode();
+                    this.SolutionSteps = this.bfs.getStep();
+                    this.SolutionTimeExec = this.bfs.getTimeExec() + " ms";
                 }
-                else {
+                else { // DFS
                     this.SolutionPath = this.dfs.getMovementTSP();
+                    this.SolutionNode = this.dfs.getNode();
+                    this.SolutionSteps = this.dfs.getStep();
+                    this.SolutionTimeExec = this.dfs.getTimeExec() + " ms";
                 }
             } else
             {
                 if (isSelectingBFS) {
                     this.SolutionPath = this.bfs.solve(false);
+                    this.SolutionNode = this.bfs.getNode();
+                    this.SolutionSteps = this.bfs.getStep();
+                    this.SolutionTimeExec = this.bfs.getTimeExec() + " ms";
                 }
-                else {
-                    this.SolutionPath = this.dfs.getMovementTreasure();
+                else
+                { // DFS
+                    this.SolutionPath = this.dfs.getMovementTSP();
+                    this.SolutionNode = this.dfs.getNode();
+                    this.SolutionSteps = this.dfs.getStep();
+                    this.SolutionTimeExec = this.dfs.getTimeExec() + " ms";
                 }
             }
 
@@ -210,7 +213,7 @@ namespace Tubes2_Ckptw.ViewModels
             if (mazeView != null)
                 mazeView.InitializeMazeGrid();
 
-            this.hadSolved = true;
+            
         }
     }
 }
