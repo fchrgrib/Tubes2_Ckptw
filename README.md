@@ -27,6 +27,387 @@ Graf DFS (Depth-First Search) adalah metode pencarian jalur pada graf yang dilak
 
 Graf BFS (Breadth-First Search) adalah metode pencarian jalur pada graf yang dilakukan dengan mengunjungi simpul-simpul graf secara berurutan mulai dari simpul awal hingga simpul terakhir, dengan cara mengeksplorasi semua simpul yang terhubung dengan simpul awal terlebih dahulu sebelum bergerak ke simpul yang lebih jauh. Metode pencarian ini dilakukan dengan menggunakan teknik antrian, di mana simpul-simpul yang dieksplorasi akan ditambahkan ke dalam antrian dan diambil satu per satu sesuai dengan urutan kedatangan. Dengan metode BFS, simpul-simpul graf akan ditelusuri secara lebar dan teratur, sehingga metode ini sangat berguna dalam menemukan jalur terpendek antara simpul-simpul pada graf dan memeriksa keterhubungan antara simpul-simpul pada graf dengan banyak cabang dan relasi yang kompleks. Selain itu, metode BFS juga sering digunakan dalam pengembangan perangkat lunak dan analisis data untuk memecahkan masalah yang melibatkan graf dan struktur data.
 
+## Struktur Folder
+```
+.
+├── README.md
+├── Tubes2_Ckptw.csproj
+├── Tubes2_Ckptw.csproj.user
+├── Tubes2_Ckptw.sln
+├── app.manifest
+├── bin
+│   ├── Avalonia.Animation.dll
+│   ├── Avalonia.Base.dll
+│   ├── Avalonia.Controls.dll
+│   ├── Avalonia.DesignerSupport.dll
+│   ├── Avalonia.Desktop.dll
+│   ├── Avalonia.DesktopRuntime.dll
+│   ├── Avalonia.Dialogs.dll
+│   ├── Avalonia.FreeDesktop.dll
+│   ├── Avalonia.Input.dll
+│   ├── Avalonia.Interactivity.dll
+│   ├── Avalonia.Layout.dll
+│   ├── Avalonia.Markup.Xaml.dll
+│   ├── Avalonia.Markup.dll
+│   ├── Avalonia.MicroCom.dll
+│   ├── Avalonia.Native.dll
+│   ├── Avalonia.OpenGL.dll
+│   ├── Avalonia.ReactiveUI.dll
+│   ├── Avalonia.Remote.Protocol.dll
+│   ├── Avalonia.Skia.dll
+│   ├── Avalonia.Styling.dll
+│   ├── Avalonia.Themes.Default.dll
+│   ├── Avalonia.Themes.Fluent.dll
+│   ├── Avalonia.Visuals.dll
+│   ├── Avalonia.Win32.dll
+│   ├── Avalonia.X11.dll
+│   ├── Avalonia.dll
+│   ├── Debug
+│   │   ├── net6.0
+│   │   │   ├── Avalonia.Animation.dll
+│   │   │   ├── Avalonia.Base.dll
+│   │   │   ├── Avalonia.Controls.DataGrid.dll
+│   │   │   ├── Avalonia.Controls.dll
+│   │   │   ├── Avalonia.DesignerSupport.dll
+│   │   │   ├── Avalonia.Desktop.dll
+│   │   │   ├── Avalonia.DesktopRuntime.dll
+│   │   │   ├── Avalonia.Diagnostics.dll
+│   │   │   ├── Avalonia.Dialogs.dll
+│   │   │   ├── Avalonia.FreeDesktop.dll
+│   │   │   ├── Avalonia.Input.dll
+│   │   │   ├── Avalonia.Interactivity.dll
+│   │   │   ├── Avalonia.Layout.dll
+│   │   │   ├── Avalonia.Markup.Xaml.dll
+│   │   │   ├── Avalonia.Markup.dll
+│   │   │   ├── Avalonia.MicroCom.dll
+│   │   │   ├── Avalonia.Native.dll
+│   │   │   ├── Avalonia.OpenGL.dll
+│   │   │   ├── Avalonia.ReactiveUI.dll
+│   │   │   ├── Avalonia.Remote.Protocol.dll
+│   │   │   ├── Avalonia.Skia.dll
+│   │   │   ├── Avalonia.Styling.dll
+│   │   │   ├── Avalonia.Themes.Default.dll
+│   │   │   ├── Avalonia.Themes.Fluent.dll
+│   │   │   ├── Avalonia.Visuals.dll
+│   │   │   ├── Avalonia.Win32.dll
+│   │   │   ├── Avalonia.X11.dll
+│   │   │   ├── Avalonia.dll
+│   │   │   ├── DynamicData.dll
+│   │   │   ├── HarfBuzzSharp.dll
+│   │   │   ├── JetBrains.Annotations.dll
+│   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.dll
+│   │   │   ├── Microsoft.CodeAnalysis.CSharp.dll
+│   │   │   ├── Microsoft.CodeAnalysis.Scripting.dll
+│   │   │   ├── Microsoft.CodeAnalysis.dll
+│   │   │   ├── Microsoft.Win32.SystemEvents.dll
+│   │   │   ├── ReactiveUI.dll
+│   │   │   ├── SkiaSharp.dll
+│   │   │   ├── Splat.dll
+│   │   │   ├── System.Drawing.Common.dll
+│   │   │   ├── System.Reactive.dll
+│   │   │   ├── Tmds.DBus.dll
+│   │   │   ├── Tubes2_Ckptw.deps.json
+│   │   │   ├── Tubes2_Ckptw.dll
+│   │   │   ├── Tubes2_Ckptw.exe
+│   │   │   ├── Tubes2_Ckptw.pdb
+│   │   │   ├── Tubes2_Ckptw.runtimeconfig.json
+│   │   │   ├── cs
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── de
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── es
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── fr
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── it
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── ja
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── ko
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── pl
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── pt-BR
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── ru
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── runtimes
+│   │   │   │   ├── linux-arm
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.so
+│   │   │   │   │       └── libSkiaSharp.so
+│   │   │   │   ├── linux-arm64
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.so
+│   │   │   │   │       └── libSkiaSharp.so
+│   │   │   │   ├── linux-musl-x64
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.so
+│   │   │   │   │       └── libSkiaSharp.so
+│   │   │   │   ├── linux-x64
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.so
+│   │   │   │   │       └── libSkiaSharp.so
+│   │   │   │   ├── osx
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libAvaloniaNative.dylib
+│   │   │   │   │       ├── libHarfBuzzSharp.dylib
+│   │   │   │   │       └── libSkiaSharp.dylib
+│   │   │   │   ├── unix
+│   │   │   │   │   └── lib
+│   │   │   │   │       └── netcoreapp2.0
+│   │   │   │   │           └── System.Drawing.Common.dll
+│   │   │   │   ├── win
+│   │   │   │   │   └── lib
+│   │   │   │   │       └── netcoreapp2.0
+│   │   │   │   │           ├── Microsoft.Win32.SystemEvents.dll
+│   │   │   │   │           └── System.Drawing.Common.dll
+│   │   │   │   ├── win-arm64
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── av_libglesv2.dll
+│   │   │   │   │       ├── libHarfBuzzSharp.dll
+│   │   │   │   │       └── libSkiaSharp.dll
+│   │   │   │   ├── win-x64
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.dll
+│   │   │   │   │       └── libSkiaSharp.dll
+│   │   │   │   ├── win-x86
+│   │   │   │   │   └── native
+│   │   │   │   │       ├── libHarfBuzzSharp.dll
+│   │   │   │   │       └── libSkiaSharp.dll
+│   │   │   │   ├── win7-x64
+│   │   │   │   │   └── native
+│   │   │   │   │       └── av_libglesv2.dll
+│   │   │   │   └── win7-x86
+│   │   │   │       └── native
+│   │   │   │           └── av_libglesv2.dll
+│   │   │   ├── tr
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   ├── zh-Hans
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │   ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │   │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   └── zh-Hant
+│   │   │       ├── Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+│   │   │       ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │       ├── Microsoft.CodeAnalysis.Scripting.resources.dll
+│   │   │       └── Microsoft.CodeAnalysis.resources.dll
+│   │   └── net6.0-windows
+│   │       ├── Tubes2_Ckptw.deps.json
+│   │       ├── Tubes2_Ckptw.dll
+│   │       ├── Tubes2_Ckptw.exe
+│   │       ├── Tubes2_Ckptw.pdb
+│   │       └── Tubes2_Ckptw.runtimeconfig.json
+│   ├── DynamicData.dll
+│   ├── HarfBuzzSharp.dll
+│   ├── JetBrains.Annotations.dll
+│   ├── Microsoft.Win32.SystemEvents.dll
+│   ├── ReactiveUI.dll
+│   ├── Release
+│   │   └── net6.0-windows
+│   ├── SkiaSharp.dll
+│   ├── Splat.dll
+│   ├── System.Drawing.Common.dll
+│   ├── System.Reactive.dll
+│   ├── Tmds.DBus.dll
+│   ├── Tubes2_Ckptw.deps.json
+│   ├── Tubes2_Ckptw.dll
+│   ├── Tubes2_Ckptw.exe
+│   ├── Tubes2_Ckptw.runtimeconfig.json
+│   └── runtimes
+│       ├── linux-arm
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.so
+│       │       └── libSkiaSharp.so
+│       ├── linux-arm64
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.so
+│       │       └── libSkiaSharp.so
+│       ├── linux-musl-x64
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.so
+│       │       └── libSkiaSharp.so
+│       ├── linux-x64
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.so
+│       │       └── libSkiaSharp.so
+│       ├── osx
+│       │   └── native
+│       │       ├── libAvaloniaNative.dylib
+│       │       ├── libHarfBuzzSharp.dylib
+│       │       └── libSkiaSharp.dylib
+│       ├── unix
+│       │   └── lib
+│       │       └── netcoreapp2.0
+│       │           └── System.Drawing.Common.dll
+│       ├── win
+│       │   └── lib
+│       │       └── netcoreapp2.0
+│       │           ├── Microsoft.Win32.SystemEvents.dll
+│       │           └── System.Drawing.Common.dll
+│       ├── win-arm64
+│       │   └── native
+│       │       ├── av_libglesv2.dll
+│       │       ├── libHarfBuzzSharp.dll
+│       │       └── libSkiaSharp.dll
+│       ├── win-x64
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.dll
+│       │       └── libSkiaSharp.dll
+│       ├── win-x86
+│       │   └── native
+│       │       ├── libHarfBuzzSharp.dll
+│       │       └── libSkiaSharp.dll
+│       ├── win7-x64
+│       │   └── native
+│       │       └── av_libglesv2.dll
+│       └── win7-x86
+│           └── native
+│               └── av_libglesv2.dll
+├── doc
+│   └── Ckptw.pdf
+├── obj
+│   ├── Debug
+│   │   ├── net6.0
+│   │   │   ├── Avalonia
+│   │   │   │   ├── Resources.Inputs.cache
+│   │   │   │   ├── original.dll
+│   │   │   │   ├── original.pdb
+│   │   │   │   ├── references
+│   │   │   │   └── resources
+│   │   │   ├── Tubes2_Ckptw.AssemblyInfo.cs
+│   │   │   ├── Tubes2_Ckptw.AssemblyInfoInputs.cache
+│   │   │   ├── Tubes2_Ckptw.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │   ├── Tubes2_Ckptw.assets.cache
+│   │   │   ├── Tubes2_Ckptw.csproj.AssemblyReference.cache
+│   │   │   ├── Tubes2_Ckptw.csproj.BuildWithSkipAnalyzers
+│   │   │   ├── Tubes2_Ckptw.csproj.CopyComplete
+│   │   │   ├── Tubes2_Ckptw.csproj.CoreCompileInputs.cache
+│   │   │   ├── Tubes2_Ckptw.csproj.FileListAbsolute.txt
+│   │   │   ├── Tubes2_Ckptw.dll
+│   │   │   ├── Tubes2_Ckptw.genruntimeconfig.cache
+│   │   │   ├── Tubes2_Ckptw.pdb
+│   │   │   ├── apphost.exe
+│   │   │   ├── ref
+│   │   │   │   └── Tubes2_Ckptw.dll
+│   │   │   └── refint
+│   │   │       └── Tubes2_Ckptw.dll
+│   │   └── net6.0-windows
+│   │       ├── Tubes2_Ckptw.AssemblyInfo.cs
+│   │       ├── Tubes2_Ckptw.AssemblyInfoInputs.cache
+│   │       ├── Tubes2_Ckptw.Form1.resources
+│   │       ├── Tubes2_Ckptw.GeneratedMSBuildEditorConfig.editorconfig
+│   │       ├── Tubes2_Ckptw.GlobalUsings.g.cs
+│   │       ├── Tubes2_Ckptw.assets.cache
+│   │       ├── Tubes2_Ckptw.csproj.AssemblyReference.cache
+│   │       ├── Tubes2_Ckptw.csproj.BuildWithSkipAnalyzers
+│   │       ├── Tubes2_Ckptw.csproj.CoreCompileInputs.cache
+│   │       ├── Tubes2_Ckptw.csproj.FileListAbsolute.txt
+│   │       ├── Tubes2_Ckptw.csproj.GenerateResource.cache
+│   │       ├── Tubes2_Ckptw.designer.deps.json
+│   │       ├── Tubes2_Ckptw.designer.runtimeconfig.json
+│   │       ├── Tubes2_Ckptw.dll
+│   │       ├── Tubes2_Ckptw.genruntimeconfig.cache
+│   │       ├── Tubes2_Ckptw.pdb
+│   │       ├── apphost.exe
+│   │       ├── ref
+│   │       │   └── Tubes2_Ckptw.dll
+│   │       └── refint
+│   │           └── Tubes2_Ckptw.dll
+│   ├── Release
+│   │   └── net6.0-windows
+│   │       ├── Tubes2_Ckptw.AssemblyInfo.cs
+│   │       ├── Tubes2_Ckptw.AssemblyInfoInputs.cache
+│   │       ├── Tubes2_Ckptw.GeneratedMSBuildEditorConfig.editorconfig
+│   │       ├── Tubes2_Ckptw.GlobalUsings.g.cs
+│   │       ├── Tubes2_Ckptw.assets.cache
+│   │       ├── Tubes2_Ckptw.csproj.AssemblyReference.cache
+│   │       ├── ref
+│   │       └── refint
+│   ├── Tubes2_Ckptw.csproj.nuget.dgspec.json
+│   ├── Tubes2_Ckptw.csproj.nuget.g.props
+│   ├── Tubes2_Ckptw.csproj.nuget.g.targets
+│   ├── project.assets.json
+│   └── project.nuget.cache
+├── src
+│   ├── App.axaml
+│   ├── App.axaml.cs
+│   ├── Assets
+│   │   ├── avalonia-logo.ico
+│   │   └── icon.ico
+│   ├── BFS
+│   │   └── BFS.cs
+│   ├── DFS
+│   │   └── DFS.cs
+│   ├── FileReader
+│   │   └── FileReader.cs
+│   ├── Models
+│   │   ├── Maze.cs
+│   │   └── MazePath.cs
+│   ├── Program.cs
+│   ├── Roots.xml
+│   ├── ViewLocator.cs
+│   ├── ViewModels
+│   │   ├── MainWindowViewModel.cs
+│   │   ├── MazeViewModel.cs
+│   │   └── ViewModelBase.cs
+│   └── Views
+│       ├── MainWindow.axaml
+│       ├── MainWindow.axaml.cs
+│       ├── MazeView.axaml
+│       └── MazeView.axaml.cs
+└── test
+    ├── 1x5.txt
+    ├── 4x5.txt
+    ├── check.txt
+    ├── check1.txt
+    ├── map1.txt
+    ├── map2.txt
+    ├── map3.txt
+    ├── map3_aman.txt
+    ├── ngaco.txt
+    ├── sampel-1.txt
+    ├── sampel-2.txt
+    ├── sampel-3.txt
+    ├── sampel-4.txt
+    ├── sampel-5.txt
+    └── text.txt
+```
+
 
 ## Requirements
 Untuk dapat menjalankan permainan ini, maka pastikan perangkat sudah dilengkapi oleh aplikasi berikut :
