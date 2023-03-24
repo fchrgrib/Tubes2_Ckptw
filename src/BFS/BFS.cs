@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace Tubes2_Ckptw.Algorithm{
     internal class BFS{
+        private Stopwatch sw = new Stopwatch();
+        private int sizeStep = 0;
+        private int lengthNode = 0;
         private Tuple<int, int> start;
         private int treasureCount = 0;
         private int height, width;
@@ -38,6 +41,19 @@ namespace Tubes2_Ckptw.Algorithm{
             //        Debug.WriteLine(String.Format("{0} {1} {2} {3} {4}", mapMaze[node.Item1,node.Item2], node, direction, count, neighbour));
             //    }
             //}
+        }
+
+        public string getTimeExec()
+        {
+            return this.sw.ElapsedMilliseconds.ToString();
+        }
+        public int getStep()
+        {
+            return this.sizeStep;
+        }
+        public int getNode()
+        {
+            return this.lengthNode;
         }
         private Dictionary<Tuple<int, int>, List<Tuple<char, List<Tuple<int, int>>, Tuple<int, int>>>> toGraph(char[,] maze){ // {(x,y): [(MOVEMENT, (a,b))]}
             int k_count = 0;
@@ -83,11 +99,16 @@ namespace Tubes2_Ckptw.Algorithm{
         }
 
         public List<char> solve(bool tsp){
+            sizeStep = 0;
+            lengthNode = 0;
+            sw.Reset();
+            sw.Start();
             var (start_row, start_col) = start;
             q.Enqueue(new BFS_Tuple("", new List<Tuple<int,int>>(), new HashSet<Tuple<int,int>>(),start, new Stack<Tuple<Tuple<int,int>, int, char>>(), new int[height,width]));
 
             while(q.Count != 0){
                 var bfs_tuple = q.Dequeue();
+                lengthNode++;
                 var (current_row, current_col) = bfs_tuple.position;
 
                 Debug.WriteLine(String.Format("{0} {1} {2}", bfs_tuple.position, bfs_tuple.path, bfs_tuple.treasures.Count));
@@ -96,11 +117,15 @@ namespace Tubes2_Ckptw.Algorithm{
                     {
                         Debug.WriteLine("Return tsp");
                         var pathBack = pathToStart(bfs_tuple);
+                        sw.Stop();
+                        sizeStep = bfs_tuple.path.Length + pathBack.path.Length;
                         return (bfs_tuple.path + pathBack.path).ToList();
                     }
                     else
                     {
                         Debug.WriteLine("Return");
+                        sw.Stop();
+                        sizeStep = bfs_tuple.path.Length;
                         return bfs_tuple.path.ToList();
                     }
                     //while (bfs_tuple.stack.Count != 0)
@@ -173,6 +198,7 @@ namespace Tubes2_Ckptw.Algorithm{
 
                 Debug.WriteLine("");
             }
+            sw.Stop();
             return "".ToList();
             //return "Tidak ada solusi".ToCharArray();
         }
@@ -188,6 +214,7 @@ namespace Tubes2_Ckptw.Algorithm{
             while (qb.Count != 0)
             {
                 var bfs_tuple = qb.Dequeue();
+                lengthNode++;
                 var (current_row, current_col) = bfs_tuple.position;
                 Debug.WriteLine(String.Format("{0} {1} {2}", bfs_tuple.position, bfs_tuple.path, bfs_tuple.treasures.Count));
                 if (bfs_tuple.position.Equals(start))
