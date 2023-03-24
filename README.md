@@ -20,6 +20,9 @@ Tidak butuh waktu lama, Ia terpikirkan sebuah solusi yang brilian. Solusi terseb
 mahasiswa yang saat ini sedang berada pada kelas Strategi Algoritma untuk menyelesaikan
 permasalahan ini.
 
+![image](https://user-images.githubusercontent.com/89321009/227563079-08dfb2db-196c-474a-8514-92d54eb0d920.png)
+
+
 ## Strategi BFS dan DFS
 
 Graf DFS (Depth-First Search) adalah metode pencarian jalur pada graf yang dilakukan dengan mengunjungi simpul-simpul graf secara berurutan mulai dari simpul awal hingga simpul terakhir. Metode pencarian ini dilakukan dengan mengeksplorasi setiap simpul secara mendalam terlebih dahulu sebelum bergerak ke simpul yang belum dieksplorasi sebelumnya. Hal ini dilakukan dengan menggunakan teknik rekursi, di mana simpul-simpul graf akan ditelusuri secara terus-menerus hingga tidak ada simpul yang belum dieksplorasi. Metode DFS sangat berguna dalam menemukan jalur terpendek antara simpul-simpul pada graf, serta dalam memeriksa keterhubungan antara simpul-simpul pada graf yang memiliki banyak cabang dan relasi yang kompleks. Selain itu, metode DFS juga sering digunakan dalam pengembangan perangkat lunak dan analisis data untuk memecahkan masalah yang melibatkan graf dan struktur data.
