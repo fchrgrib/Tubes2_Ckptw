@@ -178,7 +178,7 @@ namespace Tubes2_Ckptw.ViewModels
                 }
                 else
                 { // DFS
-                    this.SolutionPath = this.dfs.getMovementTSP();
+                    this.SolutionPath = this.dfs.getMovementTreasure();
                     this.SolutionNode = this.dfs.getNode();
                     this.SolutionSteps = this.dfs.getStep();
                     this.SolutionTimeExec = this.dfs.getTimeExec() + " ms";
