@@ -167,7 +167,6 @@ namespace Tubes2_Ckptw.Models
                         temp.Add(path[i, j]);
                     }
                 }
-                //Debug.WriteLine("ngambil " + temp.Count);
                 return temp.ToArray();
             }
         }

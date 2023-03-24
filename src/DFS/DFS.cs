@@ -10,22 +10,6 @@ namespace Tubes2_Ckptw.Algorithm
 {
     internal class DFS
     {
-
-
-        // static void Main()
-        // {
-        //     FileReader.FileReader fr = new FileReader.FileReader("text.txt");
-
-
-        //     DFS dfs = new DFS(fr.getMapMaze());
-        //     List<char> movement = dfs.getMovementTSP();
-        //     Debug.WriteLine(movement.Count);
-        //     for (int i = 0; i < movement.Count; i++)
-        //     {
-
-        //         Debug.WriteLine(movement[i]);
-        //     }
-        // }
         private Stopwatch sw = new Stopwatch();
         private int sizeStep;
         private int lengthNode;
@@ -210,12 +194,6 @@ namespace Tubes2_Ckptw.Algorithm
                     int jumlah = direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2 - (lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
 
-
-
-                    //for (int i = 0; i < Math.Abs(calculate); i++)
-                    //{
-                    //    direction.RemoveAt(direction.Count - 1);
-                    //}
                     while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
                         direction[direction.Count - 1].Item2 != currentDir.Item2 ||
                         ((Math.Abs(direction[direction.Count - 1].Item1 - currentDir.Item1) + Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2)) != 1
@@ -331,12 +309,6 @@ namespace Tubes2_Ckptw.Algorithm
                     int jumlah = direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2 - (lebi);
                     int calculate = Math.Abs(jumlah - (currentDir.Item1 + currentDir.Item2 - 1));
 
-
-                    //Debug.WriteLine("check");
-                    //Debug.WriteLine(direction[direction.Count - 1].Item1 + direction[direction.Count - 1].Item2);
-                    //Debug.WriteLine(jumlah);
-                    //Debug.WriteLine(calculate);
-                    //for(int i=0;i<direction.Count;i++) Debug.WriteLine(direction[i]);
                     while (direction[direction.Count - 1].Item1 != currentDir.Item1 &&
                         direction[direction.Count - 1].Item2 != currentDir.Item2 ||
                         ((Math.Abs(direction[direction.Count - 1].Item1 - currentDir.Item1) + Math.Abs(direction[direction.Count - 1].Item2 - currentDir.Item2)) != 1

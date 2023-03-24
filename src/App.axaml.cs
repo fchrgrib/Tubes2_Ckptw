@@ -19,7 +19,6 @@ namespace Tubes2_Ckptw
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    //DataContext = new MainWindowViewModel(),
                     DataContext = new MazeViewModel(),
                 };
             }

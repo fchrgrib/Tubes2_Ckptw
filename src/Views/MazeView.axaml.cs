@@ -17,19 +17,6 @@ namespace Tubes2_Ckptw.Views
 {
     public partial class MazeView : UserControl
     {
-        //public static readonly StyledProperty<Maze> UsedMazeProperty =
-        //  AvaloniaProperty.Register<MazeView, Maze>(nameof(UsedMazeProperty), defaultValue: new Maze());
-        //public Maze UsedMaze
-        //{
-        //    get { return GetValue(UsedMazeProperty); }
-        //    set
-        //    {
-        //        Debug.WriteLine("binding set!");
-        //        SetValue(UsedMazeProperty, value);
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public static readonly StyledProperty<MazeProp> MazePropProperty =
             AvaloniaProperty.Register<MazeView, MazeProp>(nameof(MazePropProperty), defaultValue: new MazeProp());
         public MazeProp MazeProp
@@ -57,8 +44,6 @@ namespace Tubes2_Ckptw.Views
         
         public void InitializeMazeGrid()
         {
-            //Debug.WriteLine("initing");
-
             Grid mazeGrid = this.FindControl<Grid>("MazeGrid");
 
             mazeGrid.Children.Clear();
@@ -86,7 +71,6 @@ namespace Tubes2_Ckptw.Views
 
             mazeGrid.Width = desiredGridSize * this.MazeProp.Maze.Width;
             mazeGrid.Height = desiredGridSize * this.MazeProp.Maze.Height;
-            //mazeGrid.ShowGridLines = true;
 
 
             mazeGrid.HorizontalAlignment = HorizontalAlignment.Center;
@@ -112,23 +96,12 @@ namespace Tubes2_Ckptw.Views
             {
                 for (int j = 0; j < this.MazeProp.Maze.Width; j++)
                 {
-                    int idx = i * MazeProp.Maze.Width + j; //Debug.Write(idx + " -> ");
-                    //var contentBinding = new Binding("MazeableProp.Maze.BoundContent[" + idx + "]");
-                    //var brushBinding = new Binding("MazeableProp.Maze.BoundBrush[" + idx + "]");
+                    int idx = i * MazeProp.Maze.Width + j;
 
                     // content definition
-                    Button tb = new Button()
-                    {
-
-
-                        //[!Button.ContentProperty] = contentBinding,
-                        //[!Button.BackgroundProperty] = brushBinding
-                    };
-
+                    Button tb = new Button();
                     tb.Content = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j];
 
-
-                    //tb.Bind(Button.ContentProperty, this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].ToString());
                     tb.Background = this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched
                         || this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.beingSearched ?
                         this.MazeProp.Maze.MazePaths[i * this.MazeProp.Maze.Width + j].PathState == MazePath.pathState.Searched ?
@@ -154,7 +127,6 @@ namespace Tubes2_Ckptw.Views
 
                     tb.Width = mazeGrid.Width / MazeProp.Maze.Width;
                     tb.Height = mazeGrid.Height / MazeProp.Maze.Height;
-                    //Debug.WriteLine(i * this.UsedMaze.Width + j + tb.Text);
 
                     tb.HorizontalContentAlignment = HorizontalAlignment.Center;
                     tb.VerticalContentAlignment = VerticalAlignment.Center;
@@ -162,7 +134,6 @@ namespace Tubes2_Ckptw.Views
                     tb.HorizontalAlignment = HorizontalAlignment.Center;
                     tb.VerticalAlignment = VerticalAlignment.Center;
 
-                    // not sure why this one is flipped
                     Grid.SetRow(tb, i);
                     Grid.SetColumn(tb, j);
 
@@ -195,9 +166,6 @@ namespace Tubes2_Ckptw.Views
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-
-            //Debug.WriteLine("ganti si!");
-            //this.maze.Print();
         }
     }
 
@@ -295,7 +263,7 @@ namespace Tubes2_Ckptw.Views
             {
                 if (dirPaths.Count == 0)
                 {
-                    result = "Not Yet Solved."; //TODO : refresh this when change maze
+                    result = "Not Yet Solved.";
                 }
                 else
                 {
